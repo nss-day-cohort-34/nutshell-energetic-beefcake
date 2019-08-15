@@ -48,7 +48,6 @@ overallContainer.addEventListener("click", () => {
     const password = document.querySelector("#login-password").value
     API.getAllUsersData()
       .then(usersArr => {
-        console.log(usersArr)
         usersArr.forEach(userObj => {
           if (userObj.username === username && userObj.password === password) {
             renderToDom.renderDashboardToDom()
