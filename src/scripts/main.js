@@ -28,20 +28,26 @@ overallContainer.addEventListener("click", () => {
     // get array of users (objects)
     // iterate over array to check to see if the username or email already exists
     // if not, create new user and save
-    // if exist, alert the user
-    // API.getAllUsersData()
-    //   .then(usersArr => {
-    //     usersArr.forEach(userObj => {
-    //       if (userObj.username === newUserObj.username || userObj.email === newUserObj.email) {
-    //         alert("NOPE")
-    //       } else {
-            API.saveNewUser(newUserObj)
-              .then(newRegisteredUserObj => {
-                sessionStorage.setItem("activeUser", newRegisteredUserObj.id)
-                renderToDom.renderDashboardToDom()
-              // })
-          // }
-        // })
+    // if exist, alert the user 
+    API.getAllUsersData()
+      .then(usersArr => {
+        const existingUser = usersArr.find(existingUserObj => {
+          return existingUserObj.username === newUserObj.username
+        })
+        if (existingUser) {
+          alert("NOPE")
+        } else {
+          API.saveNewUser(newUserObj)
+            .then(newRegisteredUserObj => {
+              sessionStorage.setItem("activeUser", newRegisteredUserObj.id)
+              renderToDom.renderDashboardToDom()
+            })
+        }
+        //     if (userObj.username === newUserObj.username || userObj.email === newUserObj.email) {
+        //       break
+        //     } else {
+        //         })
+        //     }
       })
   } else if (event.target.id === "login-btn") {
     const username = document.querySelector("#login-username").value
