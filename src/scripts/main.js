@@ -1,5 +1,6 @@
 import renderToDom from "./dom.js";
 import API from "./data.js"
+import { format } from "util";
 
 const overallContainer = document.querySelector("#container")
 
@@ -25,35 +26,47 @@ overallContainer.addEventListener("click", () => {
       email: email,
       password: password
     }
-    // get array of users (objects)
-    // iterate over array to check to see if the username or email already exists
-    // if not, create new user and save
-    // if exist, alert the user
-    // API.getAllUsersData()
-    //   .then(usersArr => {
-    //     usersArr.forEach(userObj => {
-    //       if (userObj.username === newUserObj.username || userObj.email === newUserObj.email) {
-    //         alert("NOPE")
-    //       } else {
-            API.saveNewUser(newUserObj)
-              .then(newRegisteredUserObj => {
-                sessionStorage.setItem("activeUser", newRegisteredUserObj.id)
-                renderToDom.renderDashboardToDom()
-              // })
-          // }
-        // })
+    API.getAllUsersData()
+      .then(usersArr => {
+        const existingUser = usersArr.find(existingUserObj => {
+          return existingUserObj.username === newUserObj.username
+        })
+        if (existingUser) {
+          alert("NOPE")
+        } else if (
+          firstName === ""
+          || lastName === ""
+          || email === ""
+          || username === ""
+          || password === ""
+        ) {
+          alert("hey! fill out our WHOLE format, dangus")
+        }
+        else {
+          API.saveNewUser(newUserObj)
+            .then(newRegisteredUserObj => {
+              sessionStorage.setItem("activeUser", newRegisteredUserObj.id)
+              renderToDom.renderDashboardToDom()
+            })
+        }
       })
   } else if (event.target.id === "login-btn") {
     const username = document.querySelector("#login-username").value
     const password = document.querySelector("#login-password").value
     API.getAllUsersData()
       .then(usersArr => {
-        usersArr.forEach(userObj => {
-          if (userObj.username === username && userObj.password === password) {
-            renderToDom.renderDashboardToDom()
-            sessionStorage.setItem("activeUser", userObj.id)
-          }
+        const userObj = usersArr.find(existingUserObj => {
+          return existingUserObj.username === username && existingUserObj.password === password
         })
+        if (userObj) {
+          renderToDom.renderDashboardToDom()
+          sessionStorage.setItem("activeUser", userObj.id)
+        } else {
+          const clickOk = confirm("something's gone wrong. click \"Cancel\" to try again OR \"OK\" to register as a new user")
+          if (clickOk === true) {
+            renderToDom.renderWelcomeToDom()
+          }
+        }
       })
   }
   if (event.target.id === "logout-btn") {
