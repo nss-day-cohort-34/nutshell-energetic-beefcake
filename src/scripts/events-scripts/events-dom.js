@@ -8,6 +8,10 @@ const renderEventsToDom = {
     renderEventsToDom(htmlString) {
         const eventsContainer = document.querySelector("#eventCardsContainer")
         eventsContainer.innerHTML += htmlString
+    },
+    renderEditForm(eventObj) {
+        const editEventCard = document.querySelector(`#eventCard--${eventObj.id}`)
+        editEventCard.innerHTML = eventsFactory.editEventHtml(eventObj)
     }
 }
 
