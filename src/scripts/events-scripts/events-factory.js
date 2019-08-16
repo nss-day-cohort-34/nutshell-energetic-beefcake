@@ -8,6 +8,7 @@ const eventsFactory = {
             <input id="event-location"" type="text" placeholder="Location">
             <button id="save-event-btn">Save New Event!</button>
         </fieldset>
+        <div id="eventCardsContainer"></div>
         `
     },
     eventCardHtml(eventObj) {

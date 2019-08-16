@@ -29,6 +29,7 @@ const eventsMain = {
                 eventsData.postNewEvent(newEventObj)
                     .then(eventsData.getEvents)
                     .then(allEvents => {
+                        document.querySelector("#eventCardsContainer").innerHTML = ""
                         allEvents.forEach(event => {
                             const eventHtml = eventsFactory.eventCardHtml(event)
                             renderEventsToDom.renderEventsToDom(eventHtml)

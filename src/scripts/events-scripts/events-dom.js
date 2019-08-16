@@ -6,7 +6,7 @@ const renderEventsToDom = {
         eventsContainer.innerHTML = eventsFactory.newEventFormHtml()
     },
     renderEventsToDom(htmlString) {
-        const eventsContainer = document.querySelector("#events-container")
+        const eventsContainer = document.querySelector("#eventCardsContainer")
         eventsContainer.innerHTML += htmlString
     }
 }

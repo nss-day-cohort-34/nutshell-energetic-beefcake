@@ -49,6 +49,7 @@ const factoryFunctions = {
     <section id="events-container">
       <h2>Events</h2>
       <button id="add-event-btn">Add New Event</button>
+      <div id="eventCardsContainer"></div>
     </section>
     <section id="friends-container">
       <h2>Friends</h2>
