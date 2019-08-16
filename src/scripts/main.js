@@ -4,7 +4,10 @@ import eventsMain from "./events-scripts/events-main.js"
 
 const overallContainer = document.querySelector("#container")
 
-renderToDom.renderWelcomeToDom()
+let activeUser = sessionStorage.getItem("activeUser")
+if(!activeUser)
+{renderToDom.renderWelcomeToDom()}
+else{renderToDom.renderDashboardToDom()}
 overallContainer.addEventListener("click", () => {
   if (event.target.id === "welcome-register") {
     renderToDom.renderRegisterToDom()
@@ -77,3 +80,5 @@ overallContainer.addEventListener("click", () => {
 })
 eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
+eventsMain.deleteEvent()
+// test

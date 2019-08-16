@@ -47,15 +47,33 @@ const eventsMain = {
             }
         })
     },
-    //STARTED CODING DELETE FUNCTIONALITY BELOW
-    // deleteEvent(eventObj) {
-    //     const mainContainer = document.querySelector("#container")
-    //     mainContainer.addEventListener("click", () => {
-    //         if (event.target.id.split("--")[0] === "delete-event-btn") {
+    // STARTED CODING DELETE FUNCTIONALITY BELOW
+    deleteEvent() {
+        const mainContainer = document.querySelector("#container")
+        mainContainer.addEventListener("click", () => {
+            if (event.target.id.split("--")[0] === "delete-event-btn") {
+                const eventId = event.target.id.split("--")[1]
+                eventsData.deleteEvent(eventId)
+                .then(eventsData.getEvents)
+                        .then(allEvents => {
+                            document.querySelector("#eventCardsContainer").innerHTML = ""
+                            allEvents.forEach(event => {
+                                const eventHtml = eventsFactory.eventCardHtml(event)
+                                renderEventsToDom.renderEventsToDom(eventHtml)
+                            })
+                        })
 
-    //         }
-    //     })
-    // },
+            }
+        })
+    },
+    // editEvent() {
+    // const mainContainer = document.querySelector("#container")
+    // mainContainer.addEventListener("click", () => {
+    //     if (event.target.id.split("--")[0] === "delete-event-btn") {
+    //         const eventId = event.target.id.split("--")[1]
+    //         eventsData.deleteEvent(eventId)
+    //     },
+
     displayAllEvents() {
         eventsData.getEvents()
             .then(allEvents => {
