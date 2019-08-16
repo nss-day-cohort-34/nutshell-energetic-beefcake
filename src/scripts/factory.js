@@ -1,7 +1,7 @@
 
 const factoryFunctions = {
   welcomePageHtmlRep() {
-  return `
+    return `
   <div id="welcome-container">
     <h1>Welcome to Nutshell</h1>
     <a href="#" id="welcome-register">Click Here to Register</a>
@@ -48,6 +48,10 @@ const factoryFunctions = {
     </section>
     <section id="events-container">
       <h2>Events</h2>
+      <div id="eventFormContainer">
+        <button id="add-event-btn">Add New Event</button>
+      </div>
+      <div id="eventCardsContainer" class="scrollable"></div>
     </section>
     <section id="friends-container">
       <h2>Friends</h2>

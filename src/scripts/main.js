@@ -1,6 +1,6 @@
 import renderToDom from "./dom.js";
 import API from "./data.js"
-import { format } from "util";
+import eventsMain from "./events-scripts/events-main.js"
 
 const overallContainer = document.querySelector("#container")
 
@@ -60,6 +60,7 @@ overallContainer.addEventListener("click", () => {
         })
         if (userObj) {
           renderToDom.renderDashboardToDom()
+          eventsMain.displayAllEvents()
           sessionStorage.setItem("activeUser", userObj.id)
         } else {
           const clickOk = confirm("something's gone wrong. click \"Cancel\" to try again OR \"OK\" to register as a new user")
@@ -74,3 +75,5 @@ overallContainer.addEventListener("click", () => {
     sessionStorage.removeItem("activeUser")
   }
 })
+eventsMain.addEventListenerToAddEventButton()
+eventsMain.saveNewEvent()
