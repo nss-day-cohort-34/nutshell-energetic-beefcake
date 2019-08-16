@@ -2,7 +2,7 @@ import eventsFactory from "./events-factory"
 
 const renderEventsToDom = {
     renderAddEventForm() {
-        const eventsContainer = document.querySelector("#events-container")
+        const eventsContainer = document.querySelector("#eventFormContainer")
         eventsContainer.innerHTML = eventsFactory.newEventFormHtml()
     },
     renderEventsToDom(htmlString) {

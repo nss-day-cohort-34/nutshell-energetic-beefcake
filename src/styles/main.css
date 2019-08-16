@@ -1,3 +1,6 @@
-.hideLoginAndRegistration {
-  display: none;
+.scrollable {
+  height: 20em;
+  overflow-y: auto;
+  background-color: whitesmoke;
 }
+

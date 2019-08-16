@@ -60,6 +60,7 @@ overallContainer.addEventListener("click", () => {
         })
         if (userObj) {
           renderToDom.renderDashboardToDom()
+          eventsMain.displayAllEvents()
           sessionStorage.setItem("activeUser", userObj.id)
         } else {
           const clickOk = confirm("something's gone wrong. click \"Cancel\" to try again OR \"OK\" to register as a new user")
