@@ -15,13 +15,19 @@ const eventsFactory = {
             <h2>${eventObj.event_name}</h2>
             <date>Date: ${eventObj.event_date}</date>
             <h3>Location: ${eventObj.event_location}</h3>
-            <button id="edit-event-btn--${eventObj.id}">Edit Event!</button> 
-            <button id="delete-event-btn--${eventObj.id}">Delete Event!</button> 
+            <button id="edit-event-btn--${eventObj.id}">Edit Event!</button>
+            <button id="delete-event-btn--${eventObj.id}">Delete Event!</button>
         </div>
         `
     },
-    editEventHtml() {
-
+    editEventHtml(eventObj) {
+        return `
+        <fieldset id="new-event-form">
+        <input id="edit-event-name" type="text" value="${eventObj.event_name}">
+        <input id="edit-event-date" type="date" value="${eventObj.event_date}">
+        <input id="edit-event-location"" type="text" value="${eventObj.event_location}">
+        <button id="save-event-edits-btn--${eventObj.id}">Save Changes!</button>
+    </fieldset>`
     }
 }
 

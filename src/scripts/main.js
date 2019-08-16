@@ -81,4 +81,4 @@ overallContainer.addEventListener("click", () => {
 eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
 eventsMain.deleteEvent()
-// test
+eventsMain.editEvent()
