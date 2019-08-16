@@ -1,0 +1,42 @@
+import eventsFactory from "./events-factory"
+import renderEventsToDom from "./events-dom"
+import eventsData from "./events-data"
+
+const eventsMain = {
+    addEventListenerToAddEventButton() {
+        const mainContainer = document.querySelector("#container")
+        mainContainer.addEventListener("click", () => {
+            if (event.target.id === "add-event-btn") {
+                renderEventsToDom.renderAddEventForm()
+            }
+        })
+    },
+    saveNewEvent() {
+        const mainContainer = document.querySelector("#container")
+        mainContainer.addEventListener("click", () => {
+            if (event.target.id === "save-event-btn") {
+                const newEventName = document.querySelector("#event-name").value
+                const newEventDate = document.querySelector("#event-date").value
+                const newEventLocation = document.querySelector("#event-location").value
+                let activeUser = sessionStorage.getItem("activeUser")
+
+                const newEventObj = {
+                    event_name: newEventName,
+                    event_date: newEventDate,
+                    event_location: newEventLocation,
+                    userId: activeUser
+                }
+                eventsData.postNewEvent(newEventObj)
+                    .then(eventsData.getEvents)
+                    .then(allEvents => {
+                        allEvents.forEach(event => {
+                            const eventHtml = eventsFactory.eventCardHtml(event)
+                            renderEventsToDom.renderEventsToDom(eventHtml)
+                        })
+                    })
+            }
+        })
+    }
+}
+
+export default eventsMain

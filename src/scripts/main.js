@@ -1,6 +1,6 @@
 import renderToDom from "./dom.js";
 import API from "./data.js"
-import { format } from "util";
+import eventsMain from "./events-scripts/events-main.js"
 
 const overallContainer = document.querySelector("#container")
 
@@ -74,3 +74,5 @@ overallContainer.addEventListener("click", () => {
     sessionStorage.removeItem("activeUser")
   }
 })
+eventsMain.addEventListenerToAddEventButton()
+eventsMain.saveNewEvent()
