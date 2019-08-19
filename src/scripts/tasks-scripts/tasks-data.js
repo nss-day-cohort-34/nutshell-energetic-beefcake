@@ -23,7 +23,7 @@ const tasksData = {
     })
       .then(newTask => newTask.json())
   },
-  editTask(taskObj) {
+  putTask(taskObj) {
     return fetch(`http://localhost:8088/tasks/${taskObj.id}`, {
       method: "PUT",
       headers: {

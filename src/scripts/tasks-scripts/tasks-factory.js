@@ -6,6 +6,7 @@ const tasksFactory = {
       <label>Expected Completion Date: </label>
       <input id="task-date" type="date" placeholder="">
       <button id="save-task-btn">Save New Task</button>
+      <button id="cancel-task-btn">Cancel</button>
       </fieldset>
       `
     },
