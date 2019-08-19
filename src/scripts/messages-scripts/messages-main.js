@@ -29,8 +29,18 @@ const messagesMain = {
                         .then(allMessages => {
                             document.querySelector("#messageCardsContainer").innerHTML = ""
                             allMessages.forEach(message => {
-                                const messageHtml = messagesFactory.messageCardHtml(message)
-                                renderMessagesToDom.renderMessagesToDom(messageHtml)
+                                const activeUser = parseInt(sessionStorage.getItem("activeUser"))
+                                if (activeUser === message.userId) {
+                                    const messagesHtml = messagesFactory.messageCardHtml(message)
+                                    renderMessagesToDom.renderMessagesToDom(messagesHtml)
+                                    renderMessagesToDom.renderEditAndDeleteButtons(message)
+                                }
+                                else {
+                                    const messagesHtml = messagesFactory.messageCardHtml(message)
+                                    renderMessagesToDom.renderMessagesToDom(messagesHtml)
+                                }
+                                // const messageHtml = messagesFactory.messageCardHtml(message)
+                                // renderMessagesToDom.renderMessagesToDom(messageHtml)
                             })
                         })
                     document.querySelector("#message-text").value = ""
@@ -52,8 +62,16 @@ const messagesMain = {
                     .then(allMessages => {
                         document.querySelector("#messageCardsContainer").innerHTML = ""
                         allMessages.forEach(message => {
-                            const messageHtml = messagesFactory.messageCardHtml(message)
-                            renderMessagesToDom.renderMessagesToDom(messageHtml)
+                            const activeUser = parseInt(sessionStorage.getItem("activeUser"))
+                            if (activeUser === message.userId) {
+                                const messagesHtml = messagesFactory.messageCardHtml(message)
+                                renderMessagesToDom.renderMessagesToDom(messagesHtml)
+                                renderMessagesToDom.renderEditAndDeleteButtons(message)
+                            }
+                            else {
+                                const messagesHtml = messagesFactory.messageCardHtml(message)
+                                renderMessagesToDom.renderMessagesToDom(messagesHtml)
+                            }
                         })
                     })
 
@@ -91,8 +109,16 @@ const messagesMain = {
             .then(allMessages => {
                 document.querySelector("#messageCardsContainer").innerHTML = ""
                 allMessages.forEach(message => {
-                    const messagesHtml = messagesFactory.messageCardHtml(message)
-                    renderMessagesToDom.renderMessagesToDom(messagesHtml)
+                    const activeUser = parseInt(sessionStorage.getItem("activeUser"))
+                    if (activeUser === message.userId) {
+                        const messagesHtml = messagesFactory.messageCardHtml(message)
+                        renderMessagesToDom.renderMessagesToDom(messagesHtml)
+                        renderMessagesToDom.renderEditAndDeleteButtons(message)
+                    }
+                    else {
+                        const messagesHtml = messagesFactory.messageCardHtml(message)
+                        renderMessagesToDom.renderMessagesToDom(messagesHtml)
+                    }
                 })
             })
     },
