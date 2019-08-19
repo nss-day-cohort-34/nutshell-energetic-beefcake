@@ -49,7 +49,6 @@ const newsMain = {
         mainContainer.addEventListener("click", () => {
             if (event.target.id.includes("delete-news-btn")) {
                 const newsId = event.target.id.split("--")[1]
-                console.log(newsId)
                 newsData.deleteNews(newsId)
                     .then(newsData.getNews)
                     .then(allNews => {
@@ -70,7 +69,6 @@ const newsMain = {
                 const newsId = event.target.id.split("--")[1]
                 newsData.getSingleNews(newsId)
                     .then((newsObj) => {
-                        console.log(newsObj.id)
                         renderNewsToDom.renderNewsEditForm(newsObj)
                     })
             }
