@@ -1,3 +1,6 @@
+// Author: Jacquelyn McCray
+// Purpose: This module allows users to create their own task list, edit task names, and mark tasks as completed.
+
 import tasksFactory from "./tasks-factory"
 import renderTasksToDom from "./tasks-dom"
 import tasksData from "./tasks-data"
@@ -113,7 +116,7 @@ const tasksMain = {
         allTasks.sort((a, b) => (a.task_date > b.task_date) ? 1 : -1)
         allTasks.forEach(task => {
           const taskHtml = tasksFactory.taskCardHtml(task)
-          renderTasksToDom.renderTasksToDom(taskHtml) // look up moment.js for formatting date
+          renderTasksToDom.renderTasksToDom(taskHtml)
         })
       })
   },
