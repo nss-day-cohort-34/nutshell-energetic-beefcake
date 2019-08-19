@@ -25,7 +25,7 @@ const newsMain = {
                         news_title: newNewsTitle,
                         news_synopsis: newNewsSynopsis,
                         news_url: newNewsUrl,
-                        userId: activeUser
+                        userId: parseInt(activeUser)
                     }
                     newsData.postNewNews(newNewsObj)
                         .then(newsData.getNews)
@@ -36,10 +36,6 @@ const newsMain = {
                                 renderNewsToDom.renderNewsToDom(newsHtml)
                             })
                         })
-                    //CODE BELOW CAUSING WEBPACK-RELATED BUGS
-                    // newEventDate = ""
-                    // newEventLocation = ""
-                    // newEventName = ""
                 }
                 else {
                     alert("fill out the form right! it ain't that hard! is it?!")
@@ -51,8 +47,9 @@ const newsMain = {
     deleteNews() {
         const mainContainer = document.querySelector("#container")
         mainContainer.addEventListener("click", () => {
-            if (event.target.id.split("--")[0] === "delete-news-btn") {
+            if (event.target.id.includes("delete-news-btn")) {
                 const newsId = event.target.id.split("--")[1]
+                console.log(newsId)
                 newsData.deleteNews(newsId)
                     .then(newsData.getNews)
                     .then(allNews => {
@@ -86,7 +83,7 @@ const newsMain = {
                     news_title: editTitleFeild,
                     news_synopsis: editSynopsisFeild,
                     news_url: editUrlFeild,
-                    id: newsId
+                    id: parseInt(newsId)
                 }
                 newsData.editNews(updatedNews).then(this.displayAllNews)
             }
