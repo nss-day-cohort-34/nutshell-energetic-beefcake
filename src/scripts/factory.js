@@ -39,6 +39,10 @@ const factoryFunctions = {
     </header>
       <section id="news-container">
       <h2>News</h2>
+      <div id="newsFormContainer">
+        <button id="add-news-btn">New Article</button>
+      </div>
+      <div id="newsCardsContainer" class="scrollable"></div>
     </section>
     <section id="tasks-container">
       <h2>Tasks</h2>
