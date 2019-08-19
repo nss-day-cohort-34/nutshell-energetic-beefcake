@@ -20,7 +20,7 @@ const eventsMain = {
                 const newEventLocation = document.querySelector("#event-location").value
 
                 if (newEventDate !== "" && newEventName !== "" && newEventLocation !== "") {
-                    let activeUser = sessionStorage.getItem("activeUser")
+                    const activeUser = parseInt(sessionStorage.getItem("activeUser"))
 
                     const newEventObj = {
                         event_name: newEventName,
