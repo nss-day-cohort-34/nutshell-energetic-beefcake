@@ -10,7 +10,7 @@ if(!activeUser)
 {renderToDom.renderWelcomeToDom()}
 else{
   renderToDom.renderDashboardToDom()
-  tasksMain.displayAllTasks()
+  tasksMain.displayIncompleteTasks()
 }
 overallContainer.addEventListener("click", () => {
   if (event.target.id === "welcome-register") {
@@ -54,7 +54,7 @@ overallContainer.addEventListener("click", () => {
             .then(newRegisteredUserObj => {
               sessionStorage.setItem("activeUser", newRegisteredUserObj.id)
               renderToDom.renderDashboardToDom()
-              tasksMain.displayAllTasks()
+              tasksMain.displayIncompleteTasks()
             })
           }
         })
@@ -68,7 +68,7 @@ overallContainer.addEventListener("click", () => {
           })
           if (userObj) {
             renderToDom.renderDashboardToDom()
-            tasksMain.displayAllTasks()
+            tasksMain.displayIncompleteTasks()
             sessionStorage.setItem("activeUser", userObj.id)
           } else {
             const clickOk = confirm("something's gone wrong. click \"Cancel\" to try again OR \"OK\" to register as a new user")
@@ -83,11 +83,8 @@ overallContainer.addEventListener("click", () => {
     sessionStorage.removeItem("activeUser")
   }
 })
-tasksMain.addEventListenerToAddTaskButton()
-tasksMain.saveNewTask()
-tasksMain.deleteTask()
-tasksMain.editTask()
-tasksMain.markTaskComplete()
+
+tasksMain.invokeAllTaskFunctions()
 
 eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
