@@ -6,7 +6,7 @@ const messagesMain = {
     addEventListenerToAddMessageButton() {
         const mainContainer = document.querySelector("#container")
         mainContainer.addEventListener("click", () => {
-            if (event.target.id === "post-message-btn") {
+            if (event.target.id === "add-message-btn") {
                 renderMessagesToDom.renderAddMessageForm()
             }
         })
@@ -18,7 +18,7 @@ const messagesMain = {
                 const newMessage = document.querySelector("#message-text").value
                 if (newMessage !== "") {
                     const activeUser = parseInt(sessionStorage.getItem("activeUser"))
-                    messageDate = new Date()
+                    const messageDate = new Date()
                     const newMessageObj = {
                         message: newMessage,
                         date: messageDate,

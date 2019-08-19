@@ -2,7 +2,7 @@ import messagesFactory from "./messages-factory"
 
 const renderMessagesToDom = {
     renderAddMessageForm() {
-        const messageContainer = document.querySelector("#messageFormContainer")
+        const messagesContainer = document.querySelector("#messageFormContainer")
         messagesContainer.innerHTML = messagesFactory.newMessageFormHtml()
     },
     renderMessagesToDom(htmlString) {

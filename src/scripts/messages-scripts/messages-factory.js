@@ -2,7 +2,7 @@ const messagesFactory = {
     newMessageFormHtml() {
         return `
         <fieldset id="new-message-form">
-            <textarea id="message-text" placeholder="Location">your message here ...</textarea>
+            <textarea id="message-text" placeholder="compose your message..."></textarea>
             <button id="post-message-btn">Post New Message!</button>
         </fieldset>
         `
@@ -24,7 +24,7 @@ const messagesFactory = {
     editmessageHtml(messageObj) {
         return `
         <fieldset id="new-message-form">
-            <textarea id="message-text" placeholder="Location">${messageObj.message}</textarea>
+            <textarea id="message-text" placeholder="your message here...">${messageObj.message}</textarea>
             <button id="save-message-edits-btn--${messageObj.id}">Save Changes!</button>
         </fieldset>
         `
