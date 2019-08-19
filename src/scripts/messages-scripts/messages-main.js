@@ -85,7 +85,6 @@ const messagesMain = {
                 const messageId = event.target.id.split("--")[1]
                 messagesData.getSingleMessage(messageId)
                     .then((messageObj) => {
-                        console.log(messageObj.id)
                         renderMessagesToDom.renderEditForm(messageObj)
                     })
             }
