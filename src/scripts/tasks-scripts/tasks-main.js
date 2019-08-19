@@ -22,7 +22,6 @@ const tasksMain = {
   },
   addEventListenerToSeeTodoTasksBtn() {
     const mainContainer = document.querySelector("#container")
-    const userId = sessionStorage.getItem("activeUser")
     mainContainer.addEventListener("click", event => {
       if (event.target.id === "see-todo-tasks-btn") {
         this.displayIncompleteTasks()
@@ -31,12 +30,12 @@ const tasksMain = {
   },
   saveNewTask() {
     const mainContainer = document.querySelector("#container")
-    mainContainer.addEventListener("click", () => {
+    const saveNewTaskHandler = () => {
       if (event.target.id === "save-task-btn") {
-        const newTaskName = document.querySelector(".new-task-name").value
-        const newTaskDate = document.querySelector(".new-task-date").value
+        const newTaskName = document.querySelector("#new-task-name").value
+        const newTaskDate = document.querySelector("#new-task-date").value
         if (newTaskDate !== "" && newTaskName !== "") {
-          const activeUser = sessionStorage.getItem("activeUser")
+          const activeUser = parseInt(sessionStorage.getItem("activeUser"))
           const newTaskObj = {
             task_name: newTaskName,
             task_date: newTaskDate,
@@ -46,14 +45,17 @@ const tasksMain = {
           renderTasksToDom.renderAddTaskBtn()
           tasksData.postNewTask(newTaskObj)
             .then(this.displayIncompleteTasks)
+            mainContainer.removeEventListener("click", saveNewTaskHandler)
+          }
+          else if (newTaskDate === "" && newTaskName === "") {
+            alert("fill out the form")
+          }
+        } else if (event.target.id === "cancel-task-btn") {
+          renderTasksToDom.renderAddTaskBtn()
+          mainContainer.removeEventListener("click", saveNewTaskHandler)
         }
-        else if (newTaskDate === "" && newTaskName === "") {
-          alert("fill out the form")
-        }
-      } else if (event.target.id === "cancel-task-btn") {
-        renderTasksToDom.renderAddTaskBtn()
       }
-    })
+      mainContainer.addEventListener("click", saveNewTaskHandler)
   },
   checkOrUncheckTask() {
     const mainContainer = document.querySelector("#container")
@@ -104,7 +106,7 @@ const tasksMain = {
     })
   },
   displayIncompleteTasks() {
-    const userId = sessionStorage.getItem("activeUser")
+    const userId = parseInt(sessionStorage.getItem("activeUser"))
     tasksData.getIncompleteTasks(userId)
       .then(allTasks => {
         document.querySelector("#taskCardsContainer").innerHTML = ""
@@ -116,7 +118,7 @@ const tasksMain = {
       })
   },
   displayCompletedTasks() {
-    const userId = sessionStorage.getItem("activeUser")
+    const userId = parseInt(sessionStorage.getItem("activeUser"))
     tasksData.getCompletedTasks(userId)
       .then(allTasks => {
         document.querySelector("#taskCardsContainer").innerHTML = ""
