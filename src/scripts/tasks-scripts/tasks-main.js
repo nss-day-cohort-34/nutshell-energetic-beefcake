@@ -74,20 +74,20 @@ const tasksMain = {
             .then(completedTaskObj => {
               completedTaskObj.task_completed = true
               tasksData.putTask(completedTaskObj)
-              .then(this.displayIncompleteTasks)
+                .then(this.displayIncompleteTasks)
             })
         } else if (event.target.checked === false) {
           tasksData.getSingleTask(taskId)
             .then(taskObj => {
               taskObj.task_completed = false
               tasksData.putTask(taskObj)
-              .then(this.displayCompletedTasks)
+                .then(this.displayCompletedTasks)
             })
         }
       }
     })
   },
-  editTask() {
+  editTaskName() {
     const mainContainer = document.querySelector("#container")
     mainContainer.addEventListener("click", () => {
       if (event.target.id.includes("task-name--")) {
@@ -100,7 +100,12 @@ const tasksMain = {
               if (keyPressEvent.key === "Enter") {
                 const newTaskName = document.querySelector("#edit-task-name").value
                 taskObj.task_name = newTaskName
-                tasksData.putTask(taskObj).then(this.displayIncompleteTasks)
+                tasksData.putTask(taskObj)
+                  .then(() => {
+                    if (taskObj.task_completed === false) {
+                      this.displayIncompleteTasks()
+                    } else {this.displayCompletedTasks()}
+                  })
               }
             })
           })
@@ -112,17 +117,19 @@ const tasksMain = {
     tasksData.getIncompleteTasks(userId)
       .then(allTasks => {
         document.querySelector("#taskCardsContainer").innerHTML = ""
+        allTasks.sort((a, b) => (a.task_date > b.task_date) ? 1 : -1)
         allTasks.forEach(task => {
           const taskHtml = tasksFactory.taskCardHtml(task)
-          renderTasksToDom.renderTasksToDom(taskHtml)
+          renderTasksToDom.renderTasksToDom(taskHtml) // look up moment.js for formatting date
         })
       })
-  },
-  displayCompletedTasks() {
-    const userId = sessionStorage.getItem("activeUser")
-    tasksData.getCompletedTasks(userId)
+    },
+    displayCompletedTasks() {
+      const userId = sessionStorage.getItem("activeUser")
+      tasksData.getCompletedTasks(userId)
       .then(allTasks => {
         document.querySelector("#taskCardsContainer").innerHTML = ""
+        allTasks.sort((a, b) => (a.task_date > b.task_date) ? 1 : -1)
         allTasks.forEach(task => {
           const taskHtml = tasksFactory.taskCardHtml(task)
           renderTasksToDom.renderTasksToDom(taskHtml)
@@ -133,7 +140,7 @@ const tasksMain = {
     this.addEventListenerToAddTaskButton()
     this.addEventListenerToCompletedTasksBtn()
     this.addEventListenerToSeeTodoTasksBtn()
-    this.editTask()
+    this.editTaskName()
     this.checkOrUncheckTask()
   }
 }
