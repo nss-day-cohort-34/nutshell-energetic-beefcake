@@ -1,13 +1,13 @@
 import renderToDom from "./dom.js";
 import API from "./data.js"
 import eventsMain from "./events-scripts/events-main.js"
+import messagesMain from "./messages-scripts/messages-main"
 
 const overallContainer = document.querySelector("#container")
 
 let activeUser = sessionStorage.getItem("activeUser")
-if(!activeUser)
-{renderToDom.renderWelcomeToDom()}
-else{renderToDom.renderDashboardToDom()}
+if (!activeUser) { renderToDom.renderWelcomeToDom() }
+else { renderToDom.renderDashboardToDom() }
 overallContainer.addEventListener("click", () => {
   if (event.target.id === "welcome-register") {
     renderToDom.renderRegisterToDom()
@@ -82,3 +82,4 @@ eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
 eventsMain.deleteEvent()
 eventsMain.editEvent()
+messagesMain.callAllMessageMethods()
