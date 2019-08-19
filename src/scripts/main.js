@@ -2,12 +2,15 @@ import renderToDom from "./dom.js";
 import API from "./data.js"
 import eventsMain from "./events-scripts/events-main.js"
 import messagesMain from "./messages-scripts/messages-main"
+import tasksMain from "./tasks-scripts/tasks-main.js"
 
 const overallContainer = document.querySelector("#container")
 
-let activeUser = sessionStorage.getItem("activeUser")
+const activeUser = parseInt(sessionStorage.getItem("activeUser"))
 if (!activeUser) { renderToDom.renderWelcomeToDom() }
-else { renderToDom.renderDashboardToDom() }
+else {
+  renderToDom.renderDashboardToDom()
+}
 overallContainer.addEventListener("click", () => {
   if (event.target.id === "welcome-register") {
     renderToDom.renderRegisterToDom()
@@ -63,7 +66,6 @@ overallContainer.addEventListener("click", () => {
         })
         if (userObj) {
           renderToDom.renderDashboardToDom()
-          eventsMain.displayAllEvents()
           sessionStorage.setItem("activeUser", userObj.id)
         } else {
           const clickOk = confirm("something's gone wrong. click \"Cancel\" to try again OR \"OK\" to register as a new user")
@@ -78,8 +80,12 @@ overallContainer.addEventListener("click", () => {
     sessionStorage.removeItem("activeUser")
   }
 })
+
+tasksMain.invokeAllTaskFunctions()
+
 eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
 eventsMain.deleteEvent()
 eventsMain.editEvent()
 messagesMain.callAllMessageMethods()
+eventsMain.displayAllEvents()
