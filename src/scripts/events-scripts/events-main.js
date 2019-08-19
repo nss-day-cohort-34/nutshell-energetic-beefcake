@@ -38,9 +38,10 @@ const eventsMain = {
                             })
                         })
                     //CODE BELOW CAUSING WEBPACK-RELATED BUGS
+                    document.querySelector("#event-name").value = ""
                     document.querySelector("#event-date").value = ""
                     document.querySelector("#event-location").value = ""
-                    document.querySelector("#event-name").value = ""
+
                 }
                 else {
                     alert("fill out the form right! it ain't that hard! is it?!")
@@ -74,7 +75,6 @@ const eventsMain = {
                 const eventId = event.target.id.split("--")[1]
                 eventsData.getSingleEvent(eventId)
                     .then((eventObj) => {
-                        console.log(eventObj.id)
                         renderEventsToDom.renderEditForm(eventObj)
                     })
             }

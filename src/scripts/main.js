@@ -4,7 +4,7 @@ import eventsMain from "./events-scripts/events-main.js"
 
 const overallContainer = document.querySelector("#container")
 
-let activeUser = sessionStorage.getItem("activeUser")
+const activeUser = parseInt(sessionStorage.getItem("activeUser"))
 if(!activeUser)
 {renderToDom.renderWelcomeToDom()}
 else{renderToDom.renderDashboardToDom()}
