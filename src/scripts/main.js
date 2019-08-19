@@ -1,6 +1,7 @@
 import renderToDom from "./dom.js";
 import API from "./data.js"
 import eventsMain from "./events-scripts/events-main.js"
+import newsMain from "./news-scripts/news-main.js"
 import tasksMain from "./tasks-scripts/tasks-main.js"
 
 const overallContainer = document.querySelector("#container")
@@ -87,4 +88,9 @@ eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
 eventsMain.deleteEvent()
 eventsMain.editEvent()
+
+newsMain.addEventListenerToAddNewsButton()
+newsMain.saveNewNews()
+newsMain.deleteNews()
+newsMain.editNews()
 eventsMain.displayAllEvents()
