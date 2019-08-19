@@ -12,6 +12,10 @@ const renderMessagesToDom = {
     renderEditForm(messageObj) {
         const editMessageCard = document.querySelector(`#messageCard--${messageObj.id}`)
         editMessageCard.innerHTML = messagesFactory.editmessageHtml(messageObj)
+    },
+    renderEditAndDeleteButtons(messageObj) {
+        const messageContainer = document.querySelector(`#messageCard--${messageObj.id}`)
+        messageContainer.innerHTML += messagesFactory.editandDeleteMessageButtons(messageObj)
     }
 }
 

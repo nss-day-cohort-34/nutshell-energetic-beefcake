@@ -15,7 +15,7 @@ const messagesFactory = {
         </div>
         `
     },
-    editandDeleteMessageButtons() {
+    editandDeleteMessageButtons(messageObj) {
         return `
         <button id="edit-message-btn--${messageObj.id}">Edit Message!</button>
         <button id="delete-message-btn--${messageObj.id}">Delete Message!</button>
