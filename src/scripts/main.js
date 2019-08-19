@@ -5,7 +5,7 @@ import tasksMain from "./tasks-scripts/tasks-main.js"
 
 const overallContainer = document.querySelector("#container")
 
-let activeUser = sessionStorage.getItem("activeUser")
+const activeUser = parseInt(sessionStorage.getItem("activeUser"))
 if(!activeUser)
 {renderToDom.renderWelcomeToDom()}
 else{
@@ -87,3 +87,4 @@ eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
 eventsMain.deleteEvent()
 eventsMain.editEvent()
+eventsMain.displayAllEvents()

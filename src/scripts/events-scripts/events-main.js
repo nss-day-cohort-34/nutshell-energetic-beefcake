@@ -18,8 +18,9 @@ const eventsMain = {
                 const newEventName = document.querySelector("#event-name").value
                 const newEventDate = document.querySelector("#event-date").value
                 const newEventLocation = document.querySelector("#event-location").value
+
                 if (newEventDate !== "" && newEventName !== "" && newEventLocation !== "") {
-                    let activeUser = sessionStorage.getItem("activeUser")
+                    const activeUser = parseInt(sessionStorage.getItem("activeUser"))
 
                     const newEventObj = {
                         event_name: newEventName,
@@ -37,9 +38,10 @@ const eventsMain = {
                             })
                         })
                     //CODE BELOW CAUSING WEBPACK-RELATED BUGS
-                    // newEventDate = ""
-                    // newEventLocation = ""
-                    // newEventName = ""
+                    document.querySelector("#event-name").value = ""
+                    document.querySelector("#event-date").value = ""
+                    document.querySelector("#event-location").value = ""
+
                 }
                 else {
                     alert("fill out the form right! it ain't that hard! is it?!")
@@ -73,7 +75,6 @@ const eventsMain = {
                 const eventId = event.target.id.split("--")[1]
                 eventsData.getSingleEvent(eventId)
                     .then((eventObj) => {
-                        console.log(eventObj.id)
                         renderEventsToDom.renderEditForm(eventObj)
                     })
             }
