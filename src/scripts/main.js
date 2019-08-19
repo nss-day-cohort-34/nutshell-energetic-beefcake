@@ -1,15 +1,15 @@
 import renderToDom from "./dom.js";
 import API from "./data.js"
 import eventsMain from "./events-scripts/events-main.js"
+import messagesMain from "./messages-scripts/messages-main"
 import newsMain from "./news-scripts/news-main.js"
 import tasksMain from "./tasks-scripts/tasks-main.js"
 
 const overallContainer = document.querySelector("#container")
 
 const activeUser = parseInt(sessionStorage.getItem("activeUser"))
-if(!activeUser)
-{renderToDom.renderWelcomeToDom()}
-else{
+if (!activeUser) { renderToDom.renderWelcomeToDom() }
+else {
   renderToDom.renderDashboardToDom()
 }
 overallContainer.addEventListener("click", () => {
@@ -55,29 +55,29 @@ overallContainer.addEventListener("click", () => {
               sessionStorage.setItem("activeUser", newRegisteredUserObj.id)
               renderToDom.renderDashboardToDom()
             })
-          }
+        }
+      })
+  } else if (event.target.id === "login-btn") {
+    const username = document.querySelector("#login-username").value
+    const password = document.querySelector("#login-password").value
+    API.getAllUsersData()
+      .then(usersArr => {
+        const userObj = usersArr.find(existingUserObj => {
+          return existingUserObj.username === username && existingUserObj.password === password
         })
-      } else if (event.target.id === "login-btn") {
-        const username = document.querySelector("#login-username").value
-        const password = document.querySelector("#login-password").value
-        API.getAllUsersData()
-        .then(usersArr => {
-          const userObj = usersArr.find(existingUserObj => {
-            return existingUserObj.username === username && existingUserObj.password === password
-          })
-          if (userObj) {
-            renderToDom.renderDashboardToDom()
-            sessionStorage.setItem("activeUser", userObj.id)
-          } else {
-            const clickOk = confirm("something's gone wrong. click \"Cancel\" to try again OR \"OK\" to register as a new user")
-            if (clickOk === true) {
-              renderToDom.renderWelcomeToDom()
-            }
+        if (userObj) {
+          renderToDom.renderDashboardToDom()
+          sessionStorage.setItem("activeUser", userObj.id)
+        } else {
+          const clickOk = confirm("something's gone wrong. click \"Cancel\" to try again OR \"OK\" to register as a new user")
+          if (clickOk === true) {
+            renderToDom.renderWelcomeToDom()
           }
-        })
-      }
-      if (event.target.id === "logout-btn") {
-        renderToDom.renderWelcomeToDom()
+        }
+      })
+  }
+  if (event.target.id === "logout-btn") {
+    renderToDom.renderWelcomeToDom()
     sessionStorage.removeItem("activeUser")
   }
 })
@@ -88,7 +88,7 @@ eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
 eventsMain.deleteEvent()
 eventsMain.editEvent()
-
+messagesMain.callAllMessageMethods()
 newsMain.addEventListenerToAddNewsButton()
 newsMain.saveNewNews()
 newsMain.deleteNews()
