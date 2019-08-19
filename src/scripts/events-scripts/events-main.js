@@ -18,6 +18,7 @@ const eventsMain = {
                 const newEventName = document.querySelector("#event-name").value
                 const newEventDate = document.querySelector("#event-date").value
                 const newEventLocation = document.querySelector("#event-location").value
+
                 if (newEventDate !== "" && newEventName !== "" && newEventLocation !== "") {
                     let activeUser = sessionStorage.getItem("activeUser")
 
@@ -37,9 +38,9 @@ const eventsMain = {
                             })
                         })
                     //CODE BELOW CAUSING WEBPACK-RELATED BUGS
-                    // newEventDate = ""
-                    // newEventLocation = ""
-                    // newEventName = ""
+                    document.querySelector("#event-date").value = ""
+                    document.querySelector("#event-location").value = ""
+                    document.querySelector("#event-name").value = ""
                 }
                 else {
                     alert("fill out the form right! it ain't that hard! is it?!")
