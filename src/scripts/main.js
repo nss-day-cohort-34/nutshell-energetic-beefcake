@@ -1,13 +1,17 @@
 import renderToDom from "./dom.js";
 import API from "./data.js"
 import eventsMain from "./events-scripts/events-main.js"
+import tasksMain from "./tasks-scripts/tasks-main.js"
 
 const overallContainer = document.querySelector("#container")
 
 let activeUser = sessionStorage.getItem("activeUser")
 if(!activeUser)
 {renderToDom.renderWelcomeToDom()}
-else{renderToDom.renderDashboardToDom()}
+else{
+  renderToDom.renderDashboardToDom()
+  tasksMain.displayAllTasks()
+}
 overallContainer.addEventListener("click", () => {
   if (event.target.id === "welcome-register") {
     renderToDom.renderRegisterToDom()
@@ -50,34 +54,41 @@ overallContainer.addEventListener("click", () => {
             .then(newRegisteredUserObj => {
               sessionStorage.setItem("activeUser", newRegisteredUserObj.id)
               renderToDom.renderDashboardToDom()
+              tasksMain.displayAllTasks()
             })
-        }
-      })
-  } else if (event.target.id === "login-btn") {
-    const username = document.querySelector("#login-username").value
-    const password = document.querySelector("#login-password").value
-    API.getAllUsersData()
-      .then(usersArr => {
-        const userObj = usersArr.find(existingUserObj => {
-          return existingUserObj.username === username && existingUserObj.password === password
-        })
-        if (userObj) {
-          renderToDom.renderDashboardToDom()
-          eventsMain.displayAllEvents()
-          sessionStorage.setItem("activeUser", userObj.id)
-        } else {
-          const clickOk = confirm("something's gone wrong. click \"Cancel\" to try again OR \"OK\" to register as a new user")
-          if (clickOk === true) {
-            renderToDom.renderWelcomeToDom()
           }
-        }
-      })
-  }
-  if (event.target.id === "logout-btn") {
-    renderToDom.renderWelcomeToDom()
+        })
+      } else if (event.target.id === "login-btn") {
+        const username = document.querySelector("#login-username").value
+        const password = document.querySelector("#login-password").value
+        API.getAllUsersData()
+        .then(usersArr => {
+          const userObj = usersArr.find(existingUserObj => {
+            return existingUserObj.username === username && existingUserObj.password === password
+          })
+          if (userObj) {
+            renderToDom.renderDashboardToDom()
+            tasksMain.displayAllTasks()
+            sessionStorage.setItem("activeUser", userObj.id)
+          } else {
+            const clickOk = confirm("something's gone wrong. click \"Cancel\" to try again OR \"OK\" to register as a new user")
+            if (clickOk === true) {
+              renderToDom.renderWelcomeToDom()
+            }
+          }
+        })
+      }
+      if (event.target.id === "logout-btn") {
+        renderToDom.renderWelcomeToDom()
     sessionStorage.removeItem("activeUser")
   }
 })
+tasksMain.addEventListenerToAddTaskButton()
+tasksMain.saveNewTask()
+tasksMain.deleteTask()
+tasksMain.editTask()
+tasksMain.markTaskComplete()
+
 eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
 eventsMain.deleteEvent()

@@ -42,6 +42,10 @@ const factoryFunctions = {
     </section>
     <section id="tasks-container">
       <h2>Tasks</h2>
+      <div id="taskFormContainer">
+        <button id="add-task-btn">Add New Task</button>
+      </div>
+      <div id="taskCardsContainer" class="scrollable"></div>
     </section>
     <section id="messages-container">
       <h2>Message Board</h2>
