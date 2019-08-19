@@ -24,7 +24,7 @@ const messagesFactory = {
     editmessageHtml(messageObj) {
         return `
         <fieldset id="new-message-form">
-            <textarea id="message-text" placeholder="your message here...">${messageObj.message}</textarea>
+            <textarea id="message-text--${messageObj.id}" placeholder="your message here...">${messageObj.message}</textarea>
             <button id="save-message-edits-btn--${messageObj.id}">Save Changes!</button>
         </fieldset>
         `

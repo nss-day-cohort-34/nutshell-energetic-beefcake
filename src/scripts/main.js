@@ -93,4 +93,4 @@ newsMain.addEventListenerToAddNewsButton()
 newsMain.saveNewNews()
 newsMain.deleteNews()
 newsMain.editNews()
-eventsMain.displayAllEvents()
+
