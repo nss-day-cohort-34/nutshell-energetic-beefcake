@@ -2,9 +2,9 @@ const tasksFactory = {
   newTaskFormHtml() {
     return `
     <fieldset id="new-task-form">
-      <input id="task-name" type="text" placeholder="Task Name">
+      <input class="new-task-name" type="text" placeholder="Task Name">
       <label>Expected Completion Date: </label>
-      <input id="task-date" type="date" placeholder="">
+      <input class="new-task-date" type="date" placeholder="">
       <button id="save-task-btn">Save New Task</button>
       <button id="cancel-task-btn">Cancel</button>
       </fieldset>

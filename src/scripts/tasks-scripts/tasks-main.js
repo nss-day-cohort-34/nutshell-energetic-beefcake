@@ -14,17 +14,9 @@ const tasksMain = {
   },
   addEventListenerToCompletedTasksBtn() {
     const mainContainer = document.querySelector("#container")
-    const userId = sessionStorage.getItem("activeUser")
     mainContainer.addEventListener("click", event => {
       if (event.target.id === "see-completed-tasks-btn") {
-        tasksData.getCompletedTasks(userId)
-          .then(allTasks => {
-            document.querySelector("#taskCardsContainer").innerHTML = ""
-            allTasks.forEach(task => {
-              const taskHtml = tasksFactory.taskCardHtml(task)
-              renderTasksToDom.renderTasksToDom(taskHtml)
-            })
-          })
+        this.displayCompletedTasks()
       }
     })
   },
@@ -33,8 +25,7 @@ const tasksMain = {
     const userId = sessionStorage.getItem("activeUser")
     mainContainer.addEventListener("click", event => {
       if (event.target.id === "see-todo-tasks-btn") {
-        tasksData.getIncompleteTasks(userId)
-          .then(this.displayIncompleteTasks)
+        this.displayIncompleteTasks()
       }
     })
   },
@@ -42,8 +33,8 @@ const tasksMain = {
     const mainContainer = document.querySelector("#container")
     mainContainer.addEventListener("click", () => {
       if (event.target.id === "save-task-btn") {
-        const newTaskName = document.querySelector("#task-name").value
-        const newTaskDate = document.querySelector("#task-date").value
+        const newTaskName = document.querySelector(".new-task-name").value
+        const newTaskDate = document.querySelector(".new-task-date").value
         if (newTaskDate !== "" && newTaskName !== "") {
           const activeUser = sessionStorage.getItem("activeUser")
           const newTaskObj = {
@@ -104,7 +95,7 @@ const tasksMain = {
                   .then(() => {
                     if (taskObj.task_completed === false) {
                       this.displayIncompleteTasks()
-                    } else {this.displayCompletedTasks()}
+                    } else { this.displayCompletedTasks() }
                   })
               }
             })
@@ -123,10 +114,10 @@ const tasksMain = {
           renderTasksToDom.renderTasksToDom(taskHtml) // look up moment.js for formatting date
         })
       })
-    },
-    displayCompletedTasks() {
-      const userId = sessionStorage.getItem("activeUser")
-      tasksData.getCompletedTasks(userId)
+  },
+  displayCompletedTasks() {
+    const userId = sessionStorage.getItem("activeUser")
+    tasksData.getCompletedTasks(userId)
       .then(allTasks => {
         document.querySelector("#taskCardsContainer").innerHTML = ""
         allTasks.sort((a, b) => (a.task_date > b.task_date) ? 1 : -1)
