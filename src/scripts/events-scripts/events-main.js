@@ -21,23 +21,15 @@ const eventsMain = {
 
                 if (newEventDate !== "" && newEventName !== "" && newEventLocation !== "") {
                     const activeUser = parseInt(sessionStorage.getItem("activeUser"))
-
                     const newEventObj = {
                         event_name: newEventName,
                         event_date: newEventDate,
                         event_location: newEventLocation,
                         userId: activeUser
                     }
+
                     eventsData.postNewEvent(newEventObj)
-                        .then(eventsData.getEvents)
-                        .then(allEvents => {
-                            document.querySelector("#eventCardsContainer").innerHTML = ""
-                            allEvents.forEach(event => {
-                                const eventHtml = eventsFactory.eventCardHtml(event)
-                                renderEventsToDom.renderEventsToDom(eventHtml)
-                            })
-                        })
-                    //CODE BELOW CAUSING WEBPACK-RELATED BUGS
+                        .then(this.displayAllEvents)
                     document.querySelector("#event-name").value = ""
                     document.querySelector("#event-date").value = ""
                     document.querySelector("#event-location").value = ""
@@ -99,6 +91,7 @@ const eventsMain = {
         eventsData.getEvents()
             .then(allEvents => {
                 document.querySelector("#eventCardsContainer").innerHTML = ""
+                allEvents.sort((a, b) => (a.event_date > b.event_date) ? 1 : -1)
                 allEvents.forEach(event => {
                     const eventHtml = eventsFactory.eventCardHtml(event)
                     renderEventsToDom.renderEventsToDom(eventHtml)
