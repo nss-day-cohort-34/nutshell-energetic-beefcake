@@ -1,4 +1,5 @@
 import factoryFunctions from "./factory.js";
+import tasksMain from "./tasks-scripts/tasks-main.js"
 
 const renderToDom = {
   renderWelcomeToDom() {
@@ -16,6 +17,7 @@ const renderToDom = {
   renderDashboardToDom() {
     const overallContainer = document.querySelector("#container")
     overallContainer.innerHTML = factoryFunctions.dashboardHtmlRep()
+    tasksMain.displayIncompleteTasks()
   }
 }
 
