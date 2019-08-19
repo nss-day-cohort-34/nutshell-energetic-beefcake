@@ -15,7 +15,8 @@ const newsFactory = {
             <h2>${newsObj.news_title}</h2>
             <p>Synopsis: ${newsObj.news_synopsis}</p>
             <a href="${newsObj.news_url}">Read More</a>
-            </br>
+            <p>${newsObj.news_date}</p>
+            <p>${newsObj.news_time}</p>
             <button id="edit-news-btn--${newsObj.id}">Edit</button>
             <button id="delete-news-btn--${newsObj.id}">Delete</button>
         </div>
