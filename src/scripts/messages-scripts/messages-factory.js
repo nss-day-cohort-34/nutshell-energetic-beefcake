@@ -7,6 +7,11 @@ const messagesFactory = {
         </fieldset>
         `
     },
+    reRenderButton() {
+        return `
+            <button id="add-message-btn">Post New Message</button>
+            `
+    },
     messageCardHtml(messageObj) {
         return `
         <div id="messageCard--${messageObj.id}">
