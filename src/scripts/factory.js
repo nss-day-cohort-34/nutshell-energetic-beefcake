@@ -66,9 +66,13 @@ const factoryFunctions = {
         <button id="add-event-btn">Add New Event</button>
       </div>
       <div id="eventCardsContainer" class="scrollable"></div>
-    </section>
-    <section id="friends-container">
+      </section>
+      <section id="friends-container">
       <h2>Friends</h2>
+      <div id="friendFormContainer">
+        <button id="search-friends-btn">Add New Friends</button>
+      </div>
+      <div id="friend-cards-container" class="scrollable"></div>
     </section>
     <button id="logout-btn">Log Out</button>
     <footer>By Energetic Beefcake</footer>
