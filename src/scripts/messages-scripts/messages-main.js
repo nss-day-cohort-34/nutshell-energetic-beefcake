@@ -89,8 +89,8 @@ const messagesMain = {
                     })
             }
             else if (event.target.id.split("--")[0] === "save-message-edits-btn") {
-                const editMessageField = document.querySelector("#message-text").value
                 const messageId = event.target.id.split("--")[1]
+                const editMessageField = document.querySelector(`#message-text--${messageId}`).value
                 const messageDate = new Date()
                 const activeUser = parseInt(sessionStorage.getItem("activeUser"))
                 const updatedMessage = {
@@ -122,7 +122,6 @@ const messagesMain = {
             })
     },
     callAllMessageMethods() {
-        this.displayAllMessages()
         this.editMessage()
         this.deleteMessage()
         this.saveNewMessage()
