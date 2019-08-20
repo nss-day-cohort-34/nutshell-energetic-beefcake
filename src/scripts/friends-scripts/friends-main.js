@@ -19,28 +19,32 @@ const friendsMain = {
                 renderFriends.renderSearchBox()
                 const friendsSearch = document.querySelector("#search-for-friends")
                 friendsSearch.addEventListener("keyup", () => {
-                    friendsData.searchUsers(friendsSearch.value)
-                        .then(searchedUsers => {
-                            const friendsContainer = document.querySelector("#friend-cards-container")
-                            friendsContainer.innerHTML = ""
-                            const users = searchedUsers
-                            friendsData.getAllConnections().then(connection => {
-                                connection.map((users) => {
-
-                                })
-                            })
-
-
-                            // const filteredFriends = searchedUsers.filter(user => {
-                            //     return user.userId !== parseInt(sessionStorage.getItem("activeUser")) && friend.otherUserId !== parseInt(sessionStora)
-                            // })
-                            // friends.forEach(friend => {
-                            //     const friendHtml = friendsFactory.allUsers(friend)
-                            //     renderFriends.renderAllUsers(friendHtml)
-                            // })
+                    friendsData.searchUsers(friendsSearch.value).then(friends => {
+                        const friendsContainer = document.querySelector("#friend-cards-container")
+                        friendsContainer.innerHTML = ""
+                        friends.forEach(friend => {
+                            const friendHtml = friendsFactory.allUsers(friend)
+                            renderFriends.renderAllUsers(friendHtml)
                         })
+                    })
+                    // .then(searchedUsers => {
+                    //     const users = searchedUsers
+                    //     friendsData.getAllConnections().then(connection => {
+                    //         connection.map((users) => {
+
+                    //         })
+                    //     })
+                    // })
                 })
-            } else if (event.target.id.split("--")[0] === "add-friend") {
+            }
+
+
+            //                 // const filteredFriends = searchedUsers.filter(user => {
+            //                 //     return user.userId !== parseInt(sessionStorage.getItem("activeUser")) && friend.otherUserId !== parseInt(sessionStora)
+            //                 // })
+            //             })
+            //     })
+            else if (event.target.id.split("--")[0] === "add-friend") {
                 const activeUser = parseInt(sessionStorage.getItem("activeUser"))
                 const otherUserId = parseInt(event.target.id.split("--")[1])
                 const friendUsername = document.querySelector(`#friend-username--${otherUserId}`).textContent
