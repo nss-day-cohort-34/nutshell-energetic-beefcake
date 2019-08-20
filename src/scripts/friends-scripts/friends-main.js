@@ -16,10 +16,47 @@ const friendsMain = {
         const mainContainer = document.querySelector("#container")
         mainContainer.addEventListener("click", () => {
             if (event.target.id === "search-friends-btn") {
-                console.log(event.target)
                 renderFriends.renderSearchBox()
+                const friendsSearch = document.querySelector("#search-for-friends")
+                friendsSearch.addEventListener("keyup", () => {
+                    friendsData.searchUsers(friendsSearch.value)
+                        .then(searchedUsers => {
+                            const friendsContainer = document.querySelector("#friend-cards-container")
+                            friendsContainer.innerHTML = ""
+                            const users = searchedUsers
+                            friendsData.getAllConnections().then(connection => {
+                                connection.map((users) => {
+
+                                })
+                            })
+
+
+                            // const filteredFriends = searchedUsers.filter(user => {
+                            //     return user.userId !== parseInt(sessionStorage.getItem("activeUser")) && friend.otherUserId !== parseInt(sessionStora)
+                            // })
+                            // friends.forEach(friend => {
+                            //     const friendHtml = friendsFactory.allUsers(friend)
+                            //     renderFriends.renderAllUsers(friendHtml)
+                            // })
+                        })
+                })
+            } else if (event.target.id.split("--")[0] === "add-friend") {
+                const activeUser = parseInt(sessionStorage.getItem("activeUser"))
+                const otherUserId = parseInt(event.target.id.split("--")[1])
+                const friendUsername = document.querySelector(`#friend-username--${otherUserId}`).textContent
+
+                const newFriendObj = {
+                    userId: activeUser,
+                    otherUserId: otherUserId
+                }
+                friendsData.addNewFriend(newFriendObj)
+                    .then(() => {
+                        const newFriendCard = document.querySelector(`#friendCard--${otherUserId}`)
+                        newFriendCard.innerHTML = friendsFactory.newFriendCard(friendUsername)
+                    })
             }
-        })
+        }
+        )
     },
     invokeAllFriendsFunctions() {
         this.addEventListenerToAddFriendBtn()
