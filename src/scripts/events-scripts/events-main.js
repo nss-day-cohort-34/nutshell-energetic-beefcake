@@ -9,6 +9,13 @@ const eventsMain = {
             if (event.target.id === "add-event-btn") {
                 renderEventsToDom.renderAddEventForm()
             }
+            else if (event.target.id === "upcoming-event-btn"){
+                this.displayUpcomingEvents()
+            }
+            else if (event.target.id === "past-event-btn") {
+                this.displayPastEvents()
+            }
+
         })
     },
     saveNewEvent() {
@@ -29,7 +36,7 @@ const eventsMain = {
                         userId: activeUser
                     }
                     eventsData.postNewEvent(newEventObj)
-                        .then(this.displayAllEvents)
+                        .then(this.displayUpcomingEvents)
                     document.querySelector("#event-name").value = ""
                     document.querySelector("#event-date").value = ""
                     document.querySelector("#event-location").value = ""
@@ -42,7 +49,7 @@ const eventsMain = {
         })
     },
 
-    
+
 
     deleteEvent() {
         const mainContainer = document.querySelector("#container")
@@ -50,7 +57,7 @@ const eventsMain = {
             if (event.target.id.split("--")[0] === "delete-event-btn") {
                 const eventId = event.target.id.split("--")[1]
                 eventsData.deleteEvent(eventId)
-                    .then(this.displayAllEvents)
+                    .then(this.displayUpcomingEvents)
 
 
 
@@ -80,24 +87,47 @@ const eventsMain = {
                 event_location: editLocationFeild,
                 id: eventId
             }
-            eventsData.editEvent(updatedEvent).then(this.displayAllEvents)
+            eventsData.editEvent(updatedEvent).then(this.displayUpcomingEvents)
         }
     })
 },
 
 
-displayAllEvents() {
+displayUpcomingEvents() {
     const activeUserID = parseInt(sessionStorage.getItem("activeUser"))
     eventsData.getEvents(activeUserID)
         .then(allEvents => {
             document.querySelector("#eventCardsContainer").innerHTML = ""
-            allEvents.sort((a, b) => (a.event_date > b.event_date) ? 1 : -1)
-            allEvents.forEach(event => {
+
+            const upcomingEvents = allEvents.filter(eventObj => {
+                const currentDate = new Date()
+                const eventDate = new Date(eventObj.event_date)
+                return eventDate > currentDate
+            })
+            upcomingEvents.forEach(event => {
+                const eventHtml = eventsFactory.eventCardHtml(event)
+                renderEventsToDom.renderEventsToDom(eventHtml)
+            })
+        })
+},
+
+displayPastEvents() {
+    const activeUserID = parseInt(sessionStorage.getItem("activeUser"))
+    eventsData.getEvents(activeUserID)
+        .then(allEvents => {
+            document.querySelector("#eventCardsContainer").innerHTML = ""
+            const pastEvents = allEvents.filter(eventObj => {
+                const currentDate = new Date()
+                const eventDate = new Date(eventObj.event_date)
+                return currentDate > eventDate
+            })
+            pastEvents.forEach(event => {
                 const eventHtml = eventsFactory.eventCardHtml(event)
                 renderEventsToDom.renderEventsToDom(eventHtml)
             })
         })
 }
+
 }
 
 export default eventsMain
