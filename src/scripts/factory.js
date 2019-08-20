@@ -4,8 +4,10 @@ const factoryFunctions = {
     return `
   <div id="welcome-container">
     <h1>Welcome to Nutshell</h1>
-    <a href="#" id="welcome-register">Click Here to Register</a>
-    <a href="#"id ="welcome-login">Existing Users Log In Here</a>
+    <div id="nav-container">
+    <a href="#" id="welcome-register">Register</a>
+    <a href="#" id="welcome-login">Log In</a>
+    </div>
   </div>
   `
   },
@@ -37,14 +39,15 @@ const factoryFunctions = {
     <header>
       <h1>Nutshell</h1>
     </header>
-      <section id="news-container">
+      <div id="dashboard-container">
+      <section id="news-container oneSection">
       <h2>News</h2>
       <div id="newsFormContainer">
         <button id="add-news-btn">New Article</button>
       </div>
       <div id="newsCardsContainer" class="scrollable"></div>
     </section>
-    <section id="tasks-container">
+    <section id="tasks-container oneSection">
       <h2>Tasks</h2>
       <div id="taskFormContainer">
         <button id="add-task-btn">Add New Task</button>
@@ -53,29 +56,31 @@ const factoryFunctions = {
       </div>
       <div id="taskCardsContainer" class="scrollable"></div>
     </section>
-    <section id="messages-container">
+    <section id="messages-container oneSection">
       <h2>Message Board</h2>
       <div id="messageFormContainer">
         <button id="add-message-btn">Post New Message</button>
       </div>
       <div id="messageCardsContainer" class="scrollable"></div>
     </section>
-    <section id="events-container">
+    <section id="events-container oneSection">
       <h2>Events</h2>
       <div id="eventFormContainer">
         <button id="add-event-btn">Add New Event</button>
       </div>
       <div id="eventCardsContainer" class="scrollable"></div>
       </section>
-      <section id="friends-container">
+      <section id="friends-container oneSection">
       <h2>Friends</h2>
       <div id="friendFormContainer">
         <button id="search-friends-btn">Add New Friends</button>
       </div>
       <div id="friend-cards-container" class="scrollable"></div>
     </section>
+    </div>
+    <footer id="main-footer">By Energetic Beefcake
     <button id="logout-btn">Log Out</button>
-    <footer>By Energetic Beefcake</footer>
+    </footer>
     `
   }
 
