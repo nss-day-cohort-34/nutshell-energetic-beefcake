@@ -42,7 +42,7 @@ const newsMain = {
                         // })
                 }
                 else {
-                    alert("fill out the form right! it ain't that hard! is it?!")
+                    alert("pls fill out the form")
                 }
             }
         })

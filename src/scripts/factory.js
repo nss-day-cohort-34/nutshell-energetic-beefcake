@@ -43,7 +43,7 @@ const factoryFunctions = {
       <section id="news-container oneSection">
       <h2>News</h2>
       <div id="newsFormContainer">
-        <button id="add-news-btn">New Article</button>
+        <button id="add-news-btn">Add New Article</button>
       </div>
       <div id="newsCardsContainer" class="scrollable"></div>
     </section>
@@ -78,7 +78,7 @@ const factoryFunctions = {
       <div id="friend-cards-container" class="scrollable"></div>
     </section>
     </div>
-    <footer id="main-footer">By Energetic Beefcake
+    <footer id="main-footer">
     <button id="logout-btn">Log Out</button>
     </footer>
     `
