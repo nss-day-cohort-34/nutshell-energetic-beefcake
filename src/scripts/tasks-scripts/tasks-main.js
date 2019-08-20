@@ -32,7 +32,7 @@ const tasksMain = {
     })
   },
   saveNewTask() {
-    const postTaskToDatabaseAndRenderIncompleteTasks = () => {
+    const postTaskToDatabaseAndRenderIncompleteTasks = (newTaskDate, newTaskName) => {
       const activeUser = parseInt(sessionStorage.getItem("activeUser"))
       const newTaskObj = {
         task_name: newTaskName,
@@ -56,10 +56,10 @@ const tasksMain = {
           if (formattedTaskDate < todaysDate) {
             const confirmDate = confirm("That date has already passed. Are you sure you want to use this date?")
             if (confirmDate === true) {
-              postTaskToDatabaseAndRenderIncompleteTasks()
+              postTaskToDatabaseAndRenderIncompleteTasks(newTaskDate, newTaskName)
             }
           }
-          postTaskToDatabaseAndRenderIncompleteTasks()
+          postTaskToDatabaseAndRenderIncompleteTasks(newTaskDate, newTaskName)
         }
         else if (newTaskDate === "" && newTaskName === "") {
           alert("fill out the form")
