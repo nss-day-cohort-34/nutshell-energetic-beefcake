@@ -18,8 +18,8 @@ const newsMain = {
                 const newNewsTitle = document.querySelector("#news-title").value
                 const newNewsSynopsis = document.querySelector("#news-synopsis").value
                 const newNewsUrl = document.querySelector("#news-url").value
-                const newNewsDate = new Date(document.querySelector("#news-date").value)
-                const newsTime = new  Date()
+                const newNewsDate = document.querySelector("#news-date").value
+                const newsTime = new Date()
                 if (newNewsSynopsis !== "" && newNewsTitle !== "" && newNewsUrl !== "") {
                     let activeUser = sessionStorage.getItem("activeUser")
 
@@ -27,7 +27,7 @@ const newsMain = {
                         news_title: newNewsTitle,
                         news_synopsis: newNewsSynopsis,
                         news_url: newNewsUrl,
-                        news_date: newNewsDate.toDateString(),
+                        news_date: newNewsDate,
                         news_time: newsTime.toLocaleTimeString(),
                         userId: parseInt(activeUser)
                     }
@@ -81,13 +81,13 @@ const newsMain = {
                 const editSynopsisFeild = document.querySelector("#edit-news-synopsis").value
                 const editUrlFeild = document.querySelector("#edit-news-url").value
                 const newsId = event.target.id.split("--")[1]
-                const editNewsDate = new Date()
+                const editNewsDate = document.querySelector("#edit-news-date").value
                 const editNewsTime = new Date()
                 const updatedNews = {
                     news_title: editTitleFeild,
                     news_synopsis: editSynopsisFeild,
                     news_url: editUrlFeild,
-                    news_date: editNewsDate.toDateString(),
+                    news_date: editNewsDate,
                     news_time: editNewsTime.toLocaleTimeString(),
                     id: parseInt(newsId)
                 }

@@ -29,6 +29,7 @@ const newsFactory = {
         <input id="edit-news-title" type="text" value="${newsObj.news_title}">
         <input id="edit-news-synopsis" type="text" value="${newsObj.news_synopsis}">
         <input id="edit-news-url"" type="text" value="${newsObj.news_url}">
+        <input id="edit-news-date"" type="date" value="${newsObj.news_date}">
         <button id="save-news-edits-btn--${newsObj.id}">Save Changes</button>
     </fieldset>`
     }
