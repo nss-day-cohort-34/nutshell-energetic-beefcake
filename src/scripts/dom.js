@@ -23,7 +23,7 @@ const renderToDom = {
     tasksMain.displayIncompleteTasks()
     newsMain.displayAllNews()
     messagesMain.displayAllMessages()
-    eventsMain.displayAllEvents()
+    eventsMain.displayUpcomingEvents()
   }
 }
 
