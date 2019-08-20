@@ -37,7 +37,7 @@ const factoryFunctions = {
   dashboardHtmlRep() {
     return `
     <header>
-      <h1>Nutshell</h1>
+      <h1 id="nutshell-title">Nutshell</h1>
     </header>
       <div id="dashboard-container">
       <section id="news-container oneSection">
