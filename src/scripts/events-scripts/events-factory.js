@@ -6,6 +6,9 @@ const eventsFactory = {
             <input id="event-date" type="date" placeholder="Date">
             <input id="event-location"" type="text" placeholder="Location">
             <button id="save-event-btn">Save New Event!</button>
+            <button id="upcoming-event-btn">Upcoiming Event</button>
+            <button id="past-event-btn">Show Pasts Event</button>
+            <button id="cancel-event-btn">Cancel</button>
         </fieldset>
         `
     },

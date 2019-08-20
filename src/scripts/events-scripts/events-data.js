@@ -9,8 +9,8 @@ const eventsData = {
         })
             .then(newEvent => newEvent.json())
     },
-    getEvents() {
-        return fetch("http://localhost:8088/events")
+    getEvents(userId) {
+        return fetch(`http://localhost:8088/events?userId=${userId}`)
             .then(events => events.json())
     },
     deleteEvent(id) {

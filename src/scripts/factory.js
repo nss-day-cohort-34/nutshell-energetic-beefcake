@@ -64,6 +64,8 @@ const factoryFunctions = {
       <h2>Events</h2>
       <div id="eventFormContainer">
         <button id="add-event-btn">Add New Event</button>
+        <button id="upcoming-event-btn">Upcoiming Event</button>
+        <button id="past-event-btn">Show Pasts Event</button>
       </div>
       <div id="eventCardsContainer" class="scrollable"></div>
       </section>
