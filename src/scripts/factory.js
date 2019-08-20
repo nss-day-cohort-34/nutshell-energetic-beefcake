@@ -58,10 +58,10 @@ const factoryFunctions = {
     </section>
     <section id="messages-container oneSection">
       <h2>Message Board</h2>
+      <div id="messageCardsContainer" class="scrollable scroll-bottom"></div>
       <div id="messageFormContainer">
         <button id="add-message-btn">Post New Message</button>
       </div>
-      <div id="messageCardsContainer" class="scrollable"></div>
     </section>
     <section id="events-container oneSection">
       <h2>Events</h2>

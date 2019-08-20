@@ -4,6 +4,7 @@
 import tasksFactory from "./tasks-factory"
 import renderTasksToDom from "./tasks-dom"
 import tasksData from "./tasks-data"
+import { format } from "url";
 
 const tasksMain = {
   addEventListenerToAddTaskButton() {
@@ -32,33 +33,45 @@ const tasksMain = {
     })
   },
   saveNewTask() {
+    const postTaskToDatabaseAndRenderIncompleteTasks = (newTaskDate, newTaskName) => {
+      const activeUser = parseInt(sessionStorage.getItem("activeUser"))
+      const newTaskObj = {
+        task_name: newTaskName,
+        task_date: newTaskDate,
+        task_completed: false,
+        userId: activeUser
+      }
+      renderTasksToDom.renderAddTaskBtn()
+      tasksData.postNewTask(newTaskObj)
+        .then(this.displayIncompleteTasks)
+      mainContainer.removeEventListener("click", saveNewTaskHandler)
+    }
     const mainContainer = document.querySelector("#container")
     const saveNewTaskHandler = () => {
       if (event.target.id === "save-task-btn") {
         const newTaskName = document.querySelector("#new-task-name").value
         const newTaskDate = document.querySelector("#new-task-date").value
         if (newTaskDate !== "" && newTaskName !== "") {
-          const activeUser = parseInt(sessionStorage.getItem("activeUser"))
-          const newTaskObj = {
-            task_name: newTaskName,
-            task_date: newTaskDate,
-            task_completed: false,
-            userId: activeUser
+          const todaysDate = new Date()
+          const formattedTaskDate = new Date(newTaskDate)
+          if (formattedTaskDate < todaysDate) {
+            const confirmDate = confirm("That date has already passed. Are you sure you want to use this date?")
+            if (confirmDate === true) {
+              postTaskToDatabaseAndRenderIncompleteTasks(newTaskDate, newTaskName)
+            }
+          } else {
+            postTaskToDatabaseAndRenderIncompleteTasks(newTaskDate, newTaskName)
           }
-          renderTasksToDom.renderAddTaskBtn()
-          tasksData.postNewTask(newTaskObj)
-            .then(this.displayIncompleteTasks)
-            mainContainer.removeEventListener("click", saveNewTaskHandler)
-          }
-          else if (newTaskDate === "" && newTaskName === "") {
-            alert("fill out the form")
-          }
-        } else if (event.target.id === "cancel-task-btn") {
-          renderTasksToDom.renderAddTaskBtn()
-          mainContainer.removeEventListener("click", saveNewTaskHandler)
         }
+        else if (newTaskDate === "" && newTaskName === "") {
+          alert("fill out the form")
+        }
+      } else if (event.target.id === "cancel-task-btn") {
+        renderTasksToDom.renderAddTaskBtn()
+        mainContainer.removeEventListener("click", saveNewTaskHandler)
       }
-      mainContainer.addEventListener("click", saveNewTaskHandler)
+    }
+    mainContainer.addEventListener("click", saveNewTaskHandler)
   },
   checkOrUncheckTask() {
     const mainContainer = document.querySelector("#container")
@@ -115,6 +128,7 @@ const tasksMain = {
         document.querySelector("#taskCardsContainer").innerHTML = ""
         allTasks.sort((a, b) => (a.task_date > b.task_date) ? 1 : -1)
         allTasks.forEach(task => {
+          task.task_date = new Date(task.task_date).toLocaleDateString()
           const taskHtml = tasksFactory.taskCardHtml(task)
           renderTasksToDom.renderTasksToDom(taskHtml)
         })
@@ -127,6 +141,7 @@ const tasksMain = {
         document.querySelector("#taskCardsContainer").innerHTML = ""
         allTasks.sort((a, b) => (a.task_date > b.task_date) ? 1 : -1)
         allTasks.forEach(task => {
+          task.task_date = new Date(task.task_date).toLocaleDateString()
           const taskHtml = tasksFactory.taskCardHtml(task)
           renderTasksToDom.renderTasksToDom(taskHtml)
         })
