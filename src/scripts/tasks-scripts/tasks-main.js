@@ -4,6 +4,7 @@
 import tasksFactory from "./tasks-factory"
 import renderTasksToDom from "./tasks-dom"
 import tasksData from "./tasks-data"
+import { format } from "url";
 
 const tasksMain = {
   addEventListenerToAddTaskButton() {
@@ -51,15 +52,16 @@ const tasksMain = {
         const newTaskName = document.querySelector("#new-task-name").value
         const newTaskDate = document.querySelector("#new-task-date").value
         if (newTaskDate !== "" && newTaskName !== "") {
-          const todaysDate = new Date().toLocaleDateString()
-          const formattedTaskDate = new Date(newTaskDate).toLocaleDateString()
+          const todaysDate = new Date()
+          const formattedTaskDate = new Date(newTaskDate)
           if (formattedTaskDate < todaysDate) {
             const confirmDate = confirm("That date has already passed. Are you sure you want to use this date?")
             if (confirmDate === true) {
               postTaskToDatabaseAndRenderIncompleteTasks(newTaskDate, newTaskName)
             }
+          } else {
+            postTaskToDatabaseAndRenderIncompleteTasks(newTaskDate, newTaskName)
           }
-          postTaskToDatabaseAndRenderIncompleteTasks(newTaskDate, newTaskName)
         }
         else if (newTaskDate === "" && newTaskName === "") {
           alert("fill out the form")
