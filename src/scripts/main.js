@@ -6,6 +6,7 @@ import newsMain from "./news-scripts/news-main.js"
 import tasksMain from "./tasks-scripts/tasks-main.js"
 import friendsMain from "./friends-scripts/friends-main.js"
 
+
 const overallContainer = document.querySelector("#container")
 
 const activeUser = parseInt(sessionStorage.getItem("activeUser"))

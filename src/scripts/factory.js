@@ -3,6 +3,7 @@ const factoryFunctions = {
   welcomePageHtmlRep() {
     return `
   <div id="welcome-container">
+    <div id="logo"></div>
     <h1>Welcome to Nutshell</h1>
     <div id="nav-container">
     <a href="#" id="welcome-register">Register</a>
