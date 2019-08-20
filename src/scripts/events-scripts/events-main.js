@@ -25,6 +25,7 @@ const eventsMain = {
                 const newEventName = document.querySelector("#event-name").value
                 const newEventDate = document.querySelector("#event-date").value
                 const newEventLocation = document.querySelector("#event-location").value
+                const eventBTNContainer = document.querySelector("#eventFormContainer")
 
                 if (newEventDate !== "" && newEventName !== "" && newEventLocation !== "") {
                     const activeUser = parseInt(sessionStorage.getItem("activeUser"))
@@ -35,16 +36,17 @@ const eventsMain = {
                         event_location: newEventLocation,
                         userId: activeUser
                     }
+                    eventBTNContainer.innerHTML = eventsFactory.filterBtns()
                     eventsData.postNewEvent(newEventObj)
                         .then(this.displayUpcomingEvents)
-                    document.querySelector("#event-name").value = ""
-                    document.querySelector("#event-date").value = ""
-                    document.querySelector("#event-location").value = ""
-
                 }
                 else {
                     alert("fill out the form right! it ain't that hard! is it?!")
                 }
+            }
+            else if (event.target.id === "cancel-event-btn") {
+                const eventBTNContainer = document.querySelector("#eventFormContainer")
+                eventBTNContainer.innerHTML = eventsFactory.filterBtns()
             }
         })
     },
@@ -98,7 +100,6 @@ displayUpcomingEvents() {
     eventsData.getEvents(activeUserID)
         .then(allEvents => {
             document.querySelector("#eventCardsContainer").innerHTML = ""
-
             const upcomingEvents = allEvents.filter(eventObj => {
                 const currentDate = new Date()
                 const eventDate = new Date(eventObj.event_date)

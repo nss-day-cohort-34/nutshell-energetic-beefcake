@@ -6,8 +6,6 @@ const eventsFactory = {
             <input id="event-date" type="date" placeholder="Date">
             <input id="event-location"" type="text" placeholder="Location">
             <button id="save-event-btn">Save New Event!</button>
-            <button id="upcoming-event-btn">Upcoming Event</button>
-            <button id="past-event-btn">Show Pasts Event</button>
             <button id="cancel-event-btn">Cancel</button>
         </fieldset>
         `
@@ -31,6 +29,13 @@ const eventsFactory = {
         <input id="edit-event-location"" type="text" value="${eventObj.event_location}">
         <button id="save-event-edits-btn--${eventObj.id}">Save Changes!</button>
     </fieldset>`
+    },
+
+    filterBtns() {
+        return `
+        <button id="add-event-btn">Add New Event</button>
+        <button id="upcoming-event-btn">Upcoming Event</button>
+        <button id="past-event-btn">Show Pasts Event</button>`
     }
 }
 
