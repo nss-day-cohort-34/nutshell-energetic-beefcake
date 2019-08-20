@@ -18,7 +18,7 @@ const newsMain = {
                 const newNewsTitle = document.querySelector("#news-title").value
                 const newNewsSynopsis = document.querySelector("#news-synopsis").value
                 const newNewsUrl = document.querySelector("#news-url").value
-                const newsDate = new Date()
+                const newNewsDate = new Date(document.querySelector("#news-date").value)
                 const newsTime = new  Date()
                 if (newNewsSynopsis !== "" && newNewsTitle !== "" && newNewsUrl !== "") {
                     let activeUser = sessionStorage.getItem("activeUser")
@@ -27,7 +27,7 @@ const newsMain = {
                         news_title: newNewsTitle,
                         news_synopsis: newNewsSynopsis,
                         news_url: newNewsUrl,
-                        news_date: newsDate.toDateString(),
+                        news_date: newNewsDate.toDateString(),
                         news_time: newsTime.toLocaleTimeString(),
                         userId: parseInt(activeUser)
                     }
@@ -82,12 +82,13 @@ const newsMain = {
                 const editUrlFeild = document.querySelector("#edit-news-url").value
                 const newsId = event.target.id.split("--")[1]
                 const editNewsDate = new Date()
+                const editNewsTime = new Date()
                 const updatedNews = {
                     news_title: editTitleFeild,
                     news_synopsis: editSynopsisFeild,
                     news_url: editUrlFeild,
                     news_date: editNewsDate.toDateString(),
-                    news_time: newsTime.toTimeString(),
+                    news_time: editNewsTime.toLocaleTimeString(),
                     id: parseInt(newsId)
                 }
                 newsData.editNews(updatedNews).then(this.displayAllNews)
@@ -100,13 +101,18 @@ const newsMain = {
         newsData.getNews()
             .then(allNews => {
                 document.querySelector("#newsCardsContainer").innerHTML = ""
-                allNews.sort((a, b) => (a.news_date > b.news_date) ? 1 : -1)
                 allNews.forEach(news => {
                     const newsHtml = newsFactory.newsCardHtml(news)
                     renderNewsToDom.renderNewsToDom(newsHtml)
                 })
             })
+        },
+        invokeAllNewsFunctions() {
+            this.addEventListenerToAddNewsButton()
+            this.saveNewNews()
+            this.deleteNews()
+            this.editNews()
+            this.displayAllNews()
+        }
     }
-}
-
 export default newsMain

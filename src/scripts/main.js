@@ -83,14 +83,11 @@ overallContainer.addEventListener("click", () => {
 })
 
 tasksMain.invokeAllTaskFunctions()
+newsMain.invokeAllNewsFunctions()
+messagesMain.callAllMessageMethods()
 
 eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
 eventsMain.deleteEvent()
 eventsMain.editEvent()
-messagesMain.callAllMessageMethods()
-newsMain.addEventListenerToAddNewsButton()
-newsMain.saveNewNews()
-newsMain.deleteNews()
-newsMain.editNews()
 eventsMain.displayAllEvents()

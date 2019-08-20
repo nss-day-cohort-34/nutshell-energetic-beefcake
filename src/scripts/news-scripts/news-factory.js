@@ -5,6 +5,7 @@ const newsFactory = {
             <input id="news-title" type="text" placeholder="Title">
             <input id="news-synopsis" type="text" placeholder="Synopsis">
             <input id="news-url" type="url" placeholder="URL">
+            <input id="news-date" type="date">
             <button id="save-news-btn">Save</button>
         </fieldset>
         `
@@ -12,8 +13,8 @@ const newsFactory = {
     newsCardHtml(newsObj) {
         return `
         <div id="newsCard--${newsObj.id}">
-            <h2>${newsObj.news_title}</h2>
-            <p>Synopsis: ${newsObj.news_synopsis}</p>
+            <h3>${newsObj.news_title}</h3>
+            <p> ${newsObj.news_synopsis}</p>
             <a href="${newsObj.news_url}">Read More</a>
             <p>${newsObj.news_date}</p>
             <p>${newsObj.news_time}</p>
