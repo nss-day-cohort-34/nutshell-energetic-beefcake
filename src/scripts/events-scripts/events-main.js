@@ -42,6 +42,8 @@ const eventsMain = {
         })
     },
 
+    
+
     deleteEvent() {
         const mainContainer = document.querySelector("#container")
         mainContainer.addEventListener("click", () => {
@@ -55,7 +57,7 @@ const eventsMain = {
             }
         })
     },
-   
+
 
         editEvent() {
     const mainContainer = document.querySelector("#container")
