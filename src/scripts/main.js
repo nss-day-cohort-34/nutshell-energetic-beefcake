@@ -4,6 +4,7 @@ import eventsMain from "./events-scripts/events-main.js"
 import messagesMain from "./messages-scripts/messages-main"
 import newsMain from "./news-scripts/news-main.js"
 import tasksMain from "./tasks-scripts/tasks-main.js"
+import friendsMain from "./friends-scripts/friends-main.js"
 
 const overallContainer = document.querySelector("#container")
 
@@ -93,4 +94,5 @@ newsMain.addEventListenerToAddNewsButton()
 newsMain.saveNewNews()
 newsMain.deleteNews()
 newsMain.editNews()
-eventsMain.displayAllEvents()
+friendsMain.displayPotentialFriends()
+friendsMain.invokeAllFriendsFunctions()

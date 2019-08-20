@@ -1,6 +1,8 @@
 import factoryFunctions from "./factory.js";
 import tasksMain from "./tasks-scripts/tasks-main.js"
 import newsMain from "./news-scripts/news-main.js";
+import messagesMain from "./messages-scripts/messages-main.js";
+import eventsMain from "./events-scripts/events-main.js"
 
 const renderToDom = {
   renderWelcomeToDom() {
@@ -20,6 +22,8 @@ const renderToDom = {
     overallContainer.innerHTML = factoryFunctions.dashboardHtmlRep()
     tasksMain.displayIncompleteTasks()
     newsMain.displayAllNews()
+    messagesMain.displayAllMessages()
+    eventsMain.displayAllEvents()
   }
 }
 
