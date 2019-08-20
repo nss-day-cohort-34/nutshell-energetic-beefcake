@@ -20,7 +20,7 @@ const friendsData = {
             .then(newFriend => newFriend.json())
     },
     getAllConnections() {
-        return fetch(`http://localhost:8088/friends`)
+        return fetch("http://localhost:8088/friends")
             .then(connections => connections.json())
     }
 }
