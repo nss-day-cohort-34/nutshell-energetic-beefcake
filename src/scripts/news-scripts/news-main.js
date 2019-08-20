@@ -21,7 +21,7 @@ const newsMain = {
                 const newNewsDate = document.querySelector("#news-date").value
                 const newsTime = new Date()
                 if (newNewsSynopsis !== "" && newNewsTitle !== "" && newNewsUrl !== "") {
-                    let activeUser = sessionStorage.getItem("activeUser")
+                    const activeUser = parseInt(sessionStorage.getItem("activeUser"))
 
                     const newNewsObj = {
                         news_title: newNewsTitle,
@@ -29,17 +29,17 @@ const newsMain = {
                         news_url: newNewsUrl,
                         news_date: newNewsDate,
                         news_time: newsTime.toLocaleTimeString(),
-                        userId: parseInt(activeUser)
+                        userId: activeUser
                     }
                     newsData.postNewNews(newNewsObj)
-                        .then(newsData.getNews)
-                        .then(allNews => {
-                            document.querySelector("#newsCardsContainer").innerHTML = ""
-                            allNews.forEach(news => {
-                                const newsHtml = newsFactory.newsCardHtml(news)
-                                renderNewsToDom.renderNewsToDom(newsHtml)
-                            })
-                        })
+                        .then(this.displayAllNews)
+                        // .then(allNews => {
+                        //     document.querySelector("#newsCardsContainer").innerHTML = ""
+                        //     allNews.forEach(news => {
+                        //         const newsHtml = newsFactory.newsCardHtml(news)
+                        //         renderNewsToDom.renderNewsToDom(newsHtml)
+                        //     })
+                        // })
                 }
                 else {
                     alert("fill out the form right! it ain't that hard! is it?!")
@@ -54,14 +54,14 @@ const newsMain = {
             if (event.target.id.includes("delete-news-btn")) {
                 const newsId = event.target.id.split("--")[1]
                 newsData.deleteNews(newsId)
-                    .then(newsData.getNews)
-                    .then(allNews => {
-                        document.querySelector("#newsCardsContainer").innerHTML = ""
-                        allNews.forEach(news => {
-                            const newsHtml = newsFactory.newsCardHtml(news)
-                            renderNewsToDom.renderNewsToDom(newsHtml)
-                        })
-                    })
+                    .then(this.displayAllNews)
+                    // .then(allNews => {
+                    //     document.querySelector("#newsCardsContainer").innerHTML = ""
+                    //     allNews.forEach(news => {
+                    //         const newsHtml = newsFactory.newsCardHtml(news)
+                    //         renderNewsToDom.renderNewsToDom(newsHtml)
+                    //     })
+                    // })
 
             }
         })
@@ -83,13 +83,15 @@ const newsMain = {
                 const newsId = event.target.id.split("--")[1]
                 const editNewsDate = document.querySelector("#edit-news-date").value
                 const editNewsTime = new Date()
+                const  activeUser = parseInt(sessionStorage.getItem("activeUser"))
                 const updatedNews = {
                     news_title: editTitleFeild,
                     news_synopsis: editSynopsisFeild,
                     news_url: editUrlFeild,
                     news_date: editNewsDate,
                     news_time: editNewsTime.toLocaleTimeString(),
-                    id: parseInt(newsId)
+                    userId: activeUser,
+                    id: newsId
                 }
                 newsData.editNews(updatedNews).then(this.displayAllNews)
             }
@@ -98,7 +100,8 @@ const newsMain = {
 
 
     displayAllNews() {
-        newsData.getNews()
+        const  activeUser = parseInt(sessionStorage.getItem("activeUser"))
+        newsData.getNews(activeUser)
             .then(allNews => {
                 document.querySelector("#newsCardsContainer").innerHTML = ""
                 allNews.forEach(news => {
