@@ -120,7 +120,7 @@ const messagesMain = {
                         renderMessagesToDom.renderMessagesToDom(messagesHtml)
                     }
                 })
-            }).then(() => this.scrollWindow())
+            }).then(() => messagesMain.scrollWindow())
     },
     scrollWindow() {
         const areaToScroll = document.querySelector("#messageCardsContainer")
