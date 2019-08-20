@@ -83,11 +83,14 @@ const eventsMain = {
             const editDateFeild = document.querySelector("#edit-event-date").value
             const editLocationFeild = document.querySelector("#edit-event-location").value
             const eventId = event.target.id.split("--")[1]
+            const userId = parseInt(sessionStorage.getItem("activeUser"))
             const updatedEvent = {
                 event_name: editNameFeild,
                 event_date: editDateFeild,
                 event_location: editLocationFeild,
+                userId: userId,
                 id: eventId
+
             }
             eventsData.editEvent(updatedEvent).then(this.displayUpcomingEvents)
         }
