@@ -13,7 +13,7 @@ const newsFactory = {
     newsCardHtml(newsObj) {
         return `
         <div id="newsCard--${newsObj.id}">
-            <h3>${newsObj.news_title}</h3>
+            <h2>${newsObj.news_title}</h2>
             <p> ${newsObj.news_synopsis}</p>
             <a href="${newsObj.news_url}">Read More</a>
             <p>${newsObj.news_date}</p>
