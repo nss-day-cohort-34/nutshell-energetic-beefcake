@@ -1,15 +1,16 @@
+
 const messagesFactory = {
     newMessageFormHtml() {
         return `
         <fieldset id="new-message-form">
             <textarea id="message-text" placeholder="compose your message..."></textarea>
-            <button id="post-message-btn">Post New Message!</button>
+            <button id="post-message-btn">Add New Message</button>
         </fieldset>
         `
     },
     reRenderButton() {
         return `
-            <button id="add-message-btn">Post New Message</button>
+            <button id="add-message-btn">Add New Message</button>
             `
     },
     messageCardHtml(messageObj) {
@@ -22,15 +23,15 @@ const messagesFactory = {
     },
     editandDeleteMessageButtons(messageObj) {
         return `
-        <button id="edit-message-btn--${messageObj.id}">Edit Message!</button>
-        <button id="delete-message-btn--${messageObj.id}">Delete Message!</button>
+        <button id="edit-message-btn--${messageObj.id}">Edit</button>
+        <button id="delete-message-btn--${messageObj.id}">Delete</button>
         `
     },
     editmessageHtml(messageObj) {
         return `
         <fieldset id="new-message-form">
             <textarea id="message-text--${messageObj.id}" placeholder="your message here...">${messageObj.message}</textarea>
-            <button id="save-message-edits-btn--${messageObj.id}">Save Changes!</button>
+            <button id="save-message-edits-btn--${messageObj.id}">Save Changes</button>
         </fieldset>
         `
     }
