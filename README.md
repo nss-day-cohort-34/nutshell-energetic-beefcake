@@ -22,7 +22,7 @@ These are all of the skills and concepts that Energetic Beefcake used to create 
 1. Relational data
 1. Session Storage
 
-![nutshell features](./Nutshell.png)
+![nutshell features](./Nutshell1.png)
 
 ## How to Launch Nutshell
 
