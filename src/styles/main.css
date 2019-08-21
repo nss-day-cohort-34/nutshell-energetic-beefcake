@@ -25,19 +25,20 @@ textarea {
 }
 
 button {
-  background-color: #01024e;
-  border-color: #8b4367;
+  background-color: #8b4367;
+  border-color: #543864;
   font-size: 14px;
   border-radius: 6px;
   margin: 1em 0em;
   font-family: 'Raleway', sans-serif;
-  color: #ff6464;
+  color: #01024e;
 }
 
 button:hover {
-  background-color: #8b4367;
+  background-color: #ff6464;
   color: #01024e;
 }
+
 
 input[type=checkbox]
 {
@@ -118,4 +119,23 @@ section {
   width: 10em;
   justify-content: space-evenly;
 
+}
+
+#eventCardsContainer > div:first-child {
+  padding-left: 24px;
+  border: 1px solid #3a015b;
+  background-color:#9b5f7c;
+  color:#3a015b;
+
+}
+
+#eventCardsContainer > div:first-child > h2 {
+  font-size: 1.75em;
+}
+#eventCardsContainer > div:first-child > date {
+font-size: 1.3em;
+
+}
+#eventCardsContainer > div:first-child > h3 {
+font-size: 1.3em;
 }

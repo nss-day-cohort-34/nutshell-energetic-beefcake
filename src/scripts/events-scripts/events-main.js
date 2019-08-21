@@ -1,3 +1,5 @@
+// The main priorty of this page is the functionality for the site. Click events/ warnings/ and targeting user inputs.
+// Author Michael Stiles
 import eventsFactory from "./events-factory"
 import renderEventsToDom from "./events-dom"
 import eventsData from "./events-data"
@@ -113,6 +115,7 @@ displayUpcomingEvents() {
                 renderEventsToDom.renderEventsToDom(eventHtml)
             })
         })
+
 },
 
 displayPastEvents() {
