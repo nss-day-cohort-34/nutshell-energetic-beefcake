@@ -76,7 +76,7 @@ const factoryFunctions = {
       <section id="friends-container oneSection">
       <h2>Friends</h2>
       <div id="friendFormContainer">
-        <button id="search-friends-btn">Add New Friends</button>
+        <button id="search-friends-btn">Search for New Friends</button>
       </div>
       <div id="friend-cards-container" class="scrollable"></div>
     </section>
