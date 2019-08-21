@@ -61,8 +61,12 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #ff6464;
+}
+
 fieldset {
-  border: 1px solid #01024e;
+  border: 0px solid #01024e;
   display: flex;
   padding: 1em;
   padding-left: 0em;
@@ -107,4 +111,11 @@ section {
 .taskCard {
   display: flex;
   flex-direction: column;
+}
+
+#nav-container {
+  display: flex;
+  width: 10em;
+  justify-content: space-evenly;
+
 }

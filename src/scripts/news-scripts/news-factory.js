@@ -7,6 +7,7 @@ const newsFactory = {
             <input id="news-url" type="url" placeholder="URL">
             <input id="news-date" type="date">
             <button id="save-news-btn">Save</button>
+            <button id="cancel-news-btn">Cancel</button>
         </fieldset>
         `
     },
@@ -32,6 +33,10 @@ const newsFactory = {
         <input id="edit-news-date"" type="date" value="${newsObj.news_date}">
         <button id="save-news-edits-btn--${newsObj.id}">Save Changes</button>
     </fieldset>`
+    },
+    rerenderAddNewsBtn() {
+        return `
+        <button id="add-news-btn">Add New Article</button>`
     }
 }
 

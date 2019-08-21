@@ -8,6 +8,7 @@ const newsMain = {
         mainContainer.addEventListener("click", () => {
             if (event.target.id === "add-news-btn") {
                 renderNewsToDom.renderAddNewsForm()
+                this.cancelNewsForm()
             }
         })
     },
@@ -31,6 +32,8 @@ const newsMain = {
                         news_time: newsTime.toLocaleTimeString(),
                         userId: activeUser
                     }
+                    const addNewsBtnContainer = document.querySelector("#newsFormContainer")
+                         addNewsBtnContainer.innerHTML = newsFactory.rerenderAddNewsBtn()
                     newsData.postNewNews(newNewsObj)
                         .then(this.displayAllNews)
                         // .then(allNews => {
@@ -45,6 +48,13 @@ const newsMain = {
                     alert("pls fill out the form")
                 }
             }
+        })
+    },
+    cancelNewsForm() {
+        const cancelNewsBtn = document.querySelector("#cancel-news-btn")
+        const addNewsBtnContainer = document.querySelector("#newsFormContainer")
+        cancelNewsBtn.addEventListener("click", () => {
+            addNewsBtnContainer.innerHTML = newsFactory.rerenderAddNewsBtn()
         })
     },
     // STARTED CODING DELETE FUNCTIONALITY BELOW
