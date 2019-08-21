@@ -12,11 +12,11 @@ const tasksFactory = {
     },
     taskCardHtml(taskObj) {
       return `
-      <div id="taskCard--${taskObj.id}">
+      <div id="taskCard--${taskObj.id}" class="taskCard">
       <h2 id="task-name--${taskObj.id}">${taskObj.task_name}</h2>
       <date id="task-date--${taskObj.id}">Expected Completion Date: ${taskObj.task_date}</date>
       <label>Mark Task As Complete </label>
-      <input id="task-checkbox--${taskObj.id}" type="checkbox" name="task" value="${taskObj.task_completed}" ${taskObj.task_completed ? "checked" : ""}>
+      <input id="task-checkbox--${taskObj.id}" type="checkbox" name="task" value="${taskObj.task_completed}" class="checkbox" ${taskObj.task_completed ? "checked" : ""}>
       </div>
       `
     },

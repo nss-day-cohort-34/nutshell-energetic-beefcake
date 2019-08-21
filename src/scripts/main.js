@@ -6,6 +6,7 @@ import newsMain from "./news-scripts/news-main.js"
 import tasksMain from "./tasks-scripts/tasks-main.js"
 import friendsMain from "./friends-scripts/friends-main.js"
 
+
 const overallContainer = document.querySelector("#container")
 
 const activeUser = parseInt(sessionStorage.getItem("activeUser"))
@@ -84,14 +85,13 @@ overallContainer.addEventListener("click", () => {
 })
 
 tasksMain.invokeAllTaskFunctions()
+newsMain.invokeAllNewsFunctions()
+messagesMain.callAllMessageMethods()
 
 eventsMain.addEventListenerToAddEventButton()
 eventsMain.saveNewEvent()
 eventsMain.deleteEvent()
 eventsMain.editEvent()
 messagesMain.callAllMessageMethods()
-newsMain.addEventListenerToAddNewsButton()
-newsMain.saveNewNews()
-newsMain.deleteNews()
-newsMain.editNews()
+friendsMain.displayPotentialFriends()
 friendsMain.invokeAllFriendsFunctions()

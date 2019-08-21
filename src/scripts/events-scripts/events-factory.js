@@ -34,8 +34,8 @@ const eventsFactory = {
     filterBtns() {
         return `
         <button id="add-event-btn">Add New Event</button>
-        <button id="upcoming-event-btn">Upcoming Event</button>
-        <button id="past-event-btn">Show Pasts Event</button>`
+        <button id="upcoming-event-btn">Show Upcoming Events</button>
+        <button id="past-event-btn">Show Past Events</button>`
     }
 }
 

@@ -9,8 +9,8 @@ const newsData = {
         })
             .then(newNews => newNews.json())
     },
-    getNews() {
-        return fetch("http://localhost:8088/news")
+    getNews(userId) {
+        return fetch(`http://localhost:8088/news?_sort=news_date&_order=desc&userId=${userId}`)
             .then(news => news.json())
     },
     deleteNews(id) {
