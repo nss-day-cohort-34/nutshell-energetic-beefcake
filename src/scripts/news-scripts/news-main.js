@@ -1,3 +1,6 @@
+// Author: Ellie Ash
+// Purpose: This module allows users to post  News articles. Once posted, users have the option to edit or delete their posts.
+
 import newsFactory from "./news-factory"
 import renderNewsToDom from "./news-dom"
 import newsData from "./news-data"
@@ -115,6 +118,8 @@ const newsMain = {
             .then(allNews => {
                 document.querySelector("#newsCardsContainer").innerHTML = ""
                 allNews.forEach(news => {
+                    const formatNewDate = new Date(news.news_date).toLocaleDateString()
+                    news.news_date = formatNewDate
                     const newsHtml = newsFactory.newsCardHtml(news)
                     renderNewsToDom.renderNewsToDom(newsHtml)
                 })
@@ -125,7 +130,6 @@ const newsMain = {
             this.saveNewNews()
             this.deleteNews()
             this.editNews()
-            this.displayAllNews()
         }
     }
 export default newsMain

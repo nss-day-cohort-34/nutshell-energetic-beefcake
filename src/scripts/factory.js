@@ -61,15 +61,15 @@ const factoryFunctions = {
       <h2>Message Board</h2>
       <div id="messageCardsContainer" class="scrollable scroll-bottom"></div>
       <div id="messageFormContainer">
-        <button id="add-message-btn">Post New Message</button>
+        <button id="add-message-btn">Add New Message</button>
       </div>
     </section>
     <section id="events-container oneSection">
       <h2>Events</h2>
       <div id="eventFormContainer">
         <button id="add-event-btn">Add New Event</button>
-        <button id="upcoming-event-btn">Show Upcoming Events</button>
-        <button id="past-event-btn">Show Past Events</button>
+        <button id="upcoming-event-btn">View Upcoming Events</button>
+        <button id="past-event-btn">View Past Events</button>
       </div>
       <div id="eventCardsContainer" class="scrollable"></div>
       </section>
