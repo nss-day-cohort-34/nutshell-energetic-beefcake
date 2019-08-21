@@ -1,8 +1,14 @@
 # Nutshell: The Information Dashboard
 
-Nutshell is a new product offering that you have been tasked with building. It's a dashboard for people to use to organize their daily tasks, events, news article, friends, and chat messages.
+## Creators (aka Energetic Beefcake)
+1. Jacquelyn McCray
+1. Michael Stiles
+1. Matthew Ross
+1. Ellie Ash
 
-You will be utilizing all of the skills and concepts that you've learned up to this point in the course.
+Nutshell is a dashboard for people to organize their daily tasks, events, news articles, friends, and chat messages.
+
+These are all of the skills and concepts that Energetic Beefcake used to create Nutshell.
 
 1. Functions
 1. Databases/API
@@ -12,69 +18,201 @@ You will be utilizing all of the skills and concepts that you've learned up to t
 1. Handling user events
 1. Factory functions
 1. Data entry/editing
-1. Modular code with Browserify
+1. Modular code
 1. Relational data
+1. Session Storage
 
-To start you off, here's an example of what the resources in your API should look like once it's populated with some data from your application.
+![nutshell features](./Nutshell.png)
 
-### Users
+## How to Launch Nutshell
 
-```json
-{ "id": 1, "username": "Steve", "email": "me@me.com" }
-```
+1. Clone the repository from Github
+1. Open your terminal and type the command "npm install" to install Webpack
+1. In the main project directory, create a new directory called "API"
+1. In the API directory, create a file called "database.json"
+1. Copy the sample data below into database.json
+1. In the terminal, type the command "npm start". You are now ready to use Nutshell!
 
-### Messages
 
-```json
-{ "id": 1, "userId": 1, "message": "What's up?" }
-```
-
-### News
-
+## Sample Data
 ```json
 {
-    "id": 1,
-    "userId": 2,
-    "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
-    "title": "Wormholes Allow Information to Escape Black Holes",
-    "synopsis": "Check out this recent discovery about workholes"
+  "users": [
+    {
+      "username": "jimjamb",
+      "full_name": "jim jamb",
+      "email": "jim@jamb.org",
+      "password": "1",
+      "id": 1
+    },
+    {
+      "username": "pac-man-iac",
+      "full_name": "Billy Mitchell",
+      "email": "billy@twingalaxies.com",
+      "password": "123",
+      "id": 2
+    },
+    {
+      "username": "real_gamer_gurl",
+      "full_name": "Ellie Ash",
+      "email": "ellie@ellie.org",
+      "password": "123",
+      "id": 3
+    },
+    {
+      "username": "baby_boi39",
+      "full_name": "Michael Stiles",
+      "email": "michael@michael.com",
+      "password": "123",
+      "id": 4
+    },
+    {
+      "username": "jk_mccray",
+      "full_name": "Jacquelyn McCray",
+      "email": "jacquelyn@jacquelyn.com",
+      "password": "123",
+      "id": 5
+    },
+    {
+      "username": "mr_database",
+      "full_name": "Matt Ross",
+      "email": "matt@matt.matt",
+      "password": "123",
+      "id": 6
+    }
+  ],
+  "news": [
+    {
+      "news_title": "NEWS DAY",
+      "news_synopsis": "this is a day of news",
+      "news_url": "http://www.cnn.com/services/rss/",
+      "news_date": "2019-08-15",
+      "news_time": "11:27:26 AM",
+      "userId": 6,
+      "id": 1
+    },
+    {
+      "news_title": "The Keanussance",
+      "news_synopsis": "Fans are pumped to see Keanu Reeves in 'Matrix 4': 'We are living in the Keanussance'",
+      "news_url": "https://www.yahoo.com/entertainment/fans-are-pumped-to-see-keanu-reeves-in-matrix-4-we-are-living-in-the-keanussance-234851660.html",
+      "news_date": "2019-08-20",
+      "news_time": "11:48:33 AM",
+      "userId": 6,
+      "id": 2
+    },
+    {
+      "news_title": "Banjo-Kazooie ratings dive",
+      "news_synopsis": "After Much Thought, OGN Has Decided To Update Our Review Of 'Banjo-Kazooie' From A 9.7 To A 9.6",
+      "news_url": "https://ogn.theonion.com/after-much-thought-ogn-has-decided-to-update-our-revie-1837369382",
+      "news_date": "2019-08-19",
+      "news_time": "11:50:38 AM",
+      "userId": 6,
+      "id": 3
+    },
+    {
+      "news_title": "Yeesh",
+      "news_synopsis": "Damning Investigation Finds Jeffrey Epstein Left Unsupervised For Decades Prior To Suicide",
+      "news_url": "https://www.theonion.com/damning-investigation-finds-jeffrey-epstein-left-unsupe-1837208732",
+      "news_date": "2019-08-13",
+      "news_time": "11:51:48 AM",
+      "userId": 6,
+      "id": 4
+    }
+  ],
+  "events": [
+    {
+      "event_name": "It's the End of the World as far as you know it",
+      "event_date": "2012-12-21",
+      "event_location": "All over the world",
+      "userId": 6,
+      "id": 1
+    },
+    {
+      "event_name": "Storm Area 51",
+      "event_date": "2019-08-22",
+      "event_location": "Roswell, NM",
+      "userId": 6,
+      "id": 2
+    },
+    {
+      "event_name": "HVAC Sabotaging Party",
+      "event_date": "2019-08-28",
+      "event_location": "301 Plus Park Blvd",
+      "userId": 6,
+      "id": 3
+    }
+  ],
+  "tasks": [
+    {
+      "task_name": "Present Nutshell!",
+      "task_date": "2019-08-21",
+      "task_completed": false,
+      "userId": 6,
+      "id": 1
+    },
+    {
+      "task_name": "Hydrate and do my stretches",
+      "task_date": "2019-08-31",
+      "task_completed": true,
+      "userId": 6,
+      "id": 2
+    },
+    {
+      "task_name": "eat lunch... if i earned it",
+      "task_date": "2019-08-22",
+      "task_completed": false,
+      "userId": 6,
+      "id": 3
+    },
+    {
+      "task_name": "sweep up lunch crumbs",
+      "task_date": "2019-08-22",
+      "task_completed": false,
+      "userId": 6,
+      "id": 4
+    }
+  ],
+  "messages": [
+    {
+      "message": "o... I WISH I WERE AN OSCAR MEYER WIENER",
+      "date": "2019-08-21T16:46:03.265Z",
+      "userId": 6,
+      "id": 1
+    },
+    {
+      "message": "it's *mayer, actually",
+      "date": "2019-08-21T16:35:46.508Z",
+      "userId": 3,
+      "id": 2
+    },
+    {
+      "message": "oh great!!!! SOOOOO glad someone's looking out for the spelling interests of 'big hotdog'. @real_gamer_gurl is a real american hero.",
+      "date": "2019-08-21T16:46:20.710Z",
+      "userId": 6,
+      "id": 3
+    },
+    {
+      "message": "@mr_database --- hey man, you brought it up in the first place",
+      "date": "2019-08-21T16:38:13.711Z",
+      "userId": 4,
+      "id": 4
+    },
+    {
+      "message": "y'all. there are unswept lunch-dog crumbs EVERYWHERE. ",
+      "date": "2019-08-21T16:40:31.827Z",
+      "userId": 5,
+      "id": 5
+    },
+    {
+      "message": "wake up sheeple - we have always been, and currently are AT TREVECCA. if you think we're NOT living in a simulation, you really are drunk on the kool-aid of the masses",
+      "date": "2019-08-21T16:41:58.624Z",
+      "userId": 4,
+      "id": 6
+    }
+  ],
+  "friends": []
 }
 ```
 
-### Friends
-
-```json
-{ "connectionId": 1, "userId": 1, "otherFriendId": 3 }
-```
-
-### Tasks
-
-```json
-{ "id": 1, "userId": 3, "task": "Take out garbage" }
-```
-
-## Professional Requirements
-
-1. All teammates must be using Grunt to run ESLint and Browserify during development
-1. Each module should have a comment at the top with the following info: author(s) and purpose of module
-1. The README for your project should include instructions on how another person can download and run the application
-
-## How to Handle Authentication
-
-You will be using session storage to keep track of which user has logged into Nutshell. When the user fills out the registration form, you will POST their username and password to the `users` collection in your API. You will then immediately take the `id` of the object in the response and save it to session storage.
-
-```js
-sessionStorage.setItem("activeUser", user.id)
-```
-
-If you want to add a Logout feature, all you need to do it remove the session storage item.
-
-```js
-sessionStorage.removeItem("activeUser")
-```
-
-## Visual Feature List
-
-To help you along, here is a visualization of the features, and behaviors of the application to get you started.
-
-![nutshell features](./Nutshell.png)
+## Acknowledgments
+Energetic Beefcake would like to thank Jenna Solis, Bryan Nilsen, and Steve Brownlee for their help throughout this project.
