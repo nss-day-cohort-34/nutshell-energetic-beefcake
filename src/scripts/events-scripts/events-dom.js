@@ -1,3 +1,5 @@
+// The primary purpose for this page is targeting the conatinaer to render the user input, and converting to HTML Strings
+// Author Michael Stiles
 import eventsFactory from "./events-factory"
 
 const renderEventsToDom = {

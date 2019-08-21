@@ -1,3 +1,5 @@
+// This page dynamically renders buttons, and HTML tags when a user posts, and delets
+// Author Michael Stiles
 const eventsFactory = {
     newEventFormHtml() {
         return `
