@@ -7,6 +7,11 @@ body {
 input {
   font-family: 'Raleway', sans-serif;
   font-size: 14px;
+  margin-bottom: 1em;
+}
+textarea {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
 }
 
 .scrollable {
@@ -20,17 +25,18 @@ input {
 }
 
 button {
-  background-color: #8b4367;
+  background-color: #01024e;
   border-color: #8b4367;
   font-size: 14px;
   border-radius: 6px;
   margin: 1em 0em;
   font-family: 'Raleway', sans-serif;
-  color: #01024e;
+  color: #ff6464;
 }
 
 button:hover {
-  background-color: #ff6464;
+  background-color: #8b4367;
+  color: #01024e;
 }
 
 input[type=checkbox]
@@ -42,6 +48,7 @@ input[type=checkbox]
   -o-transform: scale(2); /* Opera */
   transform: scale(2);
   padding: 10px;
+  margin-top: 2em;
 }
 
 h2  {
@@ -58,6 +65,7 @@ fieldset {
   border: 1px solid #01024e;
   display: flex;
   padding: 1em;
+  padding-left: 0em;
 }
 
 h1 {
